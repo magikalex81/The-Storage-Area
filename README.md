@@ -1,4 +1,4 @@
 The-Storage-Area
 ================
 
-The Storage Area officiel Git from ACTICIA
+The Storage Area official Git from ACTICIA
