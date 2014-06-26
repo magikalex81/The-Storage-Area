@@ -48,7 +48,7 @@ var nbDone = 0; // initialisation of nb files already uploaded during the proces
 
 		// prepare XMLHttpRequest
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'upload.php');
+		xhr.open('POST', './php/upload.php');
 		xhr.onload = function() {
 			result.innerHTML += this.responseText;
 			uploadNext();
