@@ -4,7 +4,7 @@ var count = document.getElementById('count'); // text zone to display nb files d
 var result = document.getElementById('result'); // text zone where informations about uploaded files are displayed
 var list = []; // file list
 var nbDone = 0; // initialisation of nb files already uploaded during the process.
-
+var MaxFiles = 500; //Define the max files per drag-n-drop
 
 // main initialization
 (function(){
@@ -37,7 +37,7 @@ var nbDone = 0; // initialisation of nb files already uploaded during the proces
 
 		result.textContent = '';
 
-		for (var i = 0; i < filelist.length && i < 500; i++) { // limit is 500 files (only for not having an infinite loop)
+		for (var i = 0; i < filelist.length && i < MaxFiles; i++) { // limit is 500 files (only for not having an infinite loop)
 			list.push(filelist[i]);
 		}
 		uploadNext();
