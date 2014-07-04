@@ -2,7 +2,7 @@
 <?php
 $GLOBALS['destFolder'] = 'files';
 
-error_reporting(-1); 
+error_reporting(-1);  // commentaire de matthieu
 
 if (isset($_FILES['myfile'])) {
         $sFileName = $_FILES['myfile']['name'];
