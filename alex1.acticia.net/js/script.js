@@ -41,7 +41,7 @@ var result = document.getElementById('result'); // text zone where informations 
 	
 	var options = {
 		//server : getServer(),
-		uploadUrl : function() { return ['/tsa/php/upload.php']; },
+		uploadUrl : function() { return ['/php/upload.php']; },
 		maxFiles : 500,				// Define the max files per drag-n-drop
 		//maxFilesErrorCallback : function (files, errorCount) { };
 		maxFileSize : 20*1024*1024, // PHP file size limit (TODO à faire générer par PHP)
