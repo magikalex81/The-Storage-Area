@@ -519,7 +519,9 @@
 		
 		this.upload = function(chunkObject) {
 			
-			if (!that.isAvailable()) {
+			if (that.uploadSlot === null) {
+				that.uploadSlot = (window.XMLHttpRequest) ? new XMLHttpRequest() : (window.ActiveXObject) ? new ActiveXObject("Microsoft.XMLHTTP") : null;
+			} else {
 				console.warn('Server not available, please check ServerObject.isAvailable() before calling upload!');
 				return;
 			}
@@ -542,7 +544,7 @@
 	  		
 	  		var url = that.host + that.uploadUrl;
 	  		
-			that.uploadSlot = (window.XMLHttpRequest) ? new XMLHttpRequest() : (window.ActiveXObject) ? new ActiveXObject("Microsoft.XMLHTTP") : null;
+			
 			that.uploadSlot.open("POST", url, true);
 			
 			
