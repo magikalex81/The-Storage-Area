@@ -29,14 +29,14 @@ function _log($str) {
 
 // loop through files and move the chunks to a temporarily created directory
 if (!empty($_FILES)) foreach ($_FILES as $file) {
-
+// debug BRUTALE
+    // DEBUG BRUTAL
+    print_r($file);
 
 
     // check the error status
     if ($file['error'] != 0) {
         _log('error '.$file['error'].' in file '.$_POST['fileName']);
-            // DEBUG BRUTAL
-        print_r($_FILES);
         continue;
     }
 
