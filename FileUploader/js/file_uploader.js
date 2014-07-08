@@ -576,8 +576,8 @@
 			// When the request has failed.
 			that.uploadSlot.upload.addEventListener('error', function(e) {
 				chunkObject.status = Number.MAX_VALUE;
-				chunkObject.eventCallback('statusChange', chunkObject);
 				that.uploadSlot = null;
+				chunkObject.eventCallback('statusChange', chunkObject);
 			});
 			
 			// When the request has been aborted. 
@@ -596,10 +596,10 @@
 			that.uploadSlot.addEventListener('readystatechange', function(e) {
 				if( this.readyState === 4 ) {
 					// the transfer has completed and the server closed the connection.
-					chunkObject.uploaded = chunkObject.size;
-			    	chunkObject.eventCallback('progress', chunkObject);
-					chunkObject.eventCallback('uploadEnd', chunkObject);
 					that.uploadSlot = null;
+					chunkObject.uploaded = chunkObject.size;
+			    		chunkObject.eventCallback('progress', chunkObject);
+					chunkObject.eventCallback('uploadEnd', chunkObject);
 				}
 			});
 			
