@@ -3,7 +3,7 @@ function bytesToSize1024($bytes) { //RISKY ! in time, size may increase ! I'll t
     $unit = array('B','KiB','MiB','GiB');
     return @round($bytes / pow(1024, ($i = floor(log($bytes, 1024)))), 1).' '.$unit[$i];
 }
-$df = bytesToSize1024(disk_free_space("/"));
+$df = bytesToSize1024(disk_free_space("/")); // will be stuck into a block file.
 ?>
 <!DOCTYPE html>
 <html>
