@@ -48,11 +48,6 @@
         		alert('Please upload ' + maxFiles + ' file' + (maxFiles === 1 ? '' : 's') + ' at a time.');
       		},
       		
-    		maxFileSize: undefined,
-    		maxFileSizeErrorCallback: function(file, errorCount) {
-        		alert(file.fileName || file.name + ' is too large, please upload files less than ' + formatSize(this.options('maxFileSize')) + '.');
-      		},
-      		
       		fileType: [],
       		fileTypeErrorCallback: function(file, errorCount) {
         		alert(file.fileName || file.name + ' has type not allowed, please upload files of type ' + this.options.fileType + '.');
@@ -63,7 +58,6 @@
       		      		
       		allowChunk: true,
     		chunkSize: 4*1024*1024
-      		
     	};
     	
     	this.options = options || {};
@@ -207,9 +201,7 @@
 		var appendFiles = function(fileList, event) {
 			
 			var errorCount = 0;
-			
 			var maxFiles = uploader.options.maxFiles;
-			var maxFileSize = uploader.options.maxFileSize;
 			var allowChunk = uploader.options.allowChunk;
 			var fileType = uploader.options.fileType;
 			
@@ -232,12 +224,6 @@
 					uploader.options.fileTypeErrorCallback(file, errorCount++);
 					return false;
 				}       
-
-				if (typeof(maxFileSize)!=='undefined' && file.size > maxFileSize && !allowChunk) {
-					uploader.options.maxFileSizeErrorCallback(file, errorCount++);
-					return false;
-				}
-        
 				
 				var fileobj = new FileObject(file, uploader);
 				
@@ -409,14 +395,8 @@
 		
 		
 		
-		var maxChunkIndex;
-		
-		if (file.size > this.uploader.options.maxFileSize)			
-			maxChunkIndex = this.size / this.uploader.options.chunkSize;
-		else
-			maxChunkIndex = 1;
-			
-			
+		var maxChunkIndex = this.size / this.uploader.options.chunkSize;
+
 		for (var chunkIndex=0; chunkIndex < maxChunkIndex; chunkIndex++) {
 			var chunk = new ChunkObject(this, this.uploader.options.chunkSize, chunkIndex);
 			chunk.eventCallback = chunkEvent;
