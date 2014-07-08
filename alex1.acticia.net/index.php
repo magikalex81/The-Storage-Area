@@ -19,7 +19,7 @@ $maxfile = 500
 		</header>
 		<div class="container">
 			<div class="contr">
-				<h2>Upload your files (max <?=$df?> files at once)</h2> // will read $maxfile from php.ini
+				<h2>Upload your files (max <?=$df?> files at once)</h2> // will read $maxfile
 			</div>
 			<div class="upload_form_cont">
 				<div class="info">
