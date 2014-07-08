@@ -40,16 +40,16 @@
     	var uploader = this;
     	    	
     	this.defaultOpts = {
-    		server : function() { return ['']; },
-    		uploadUrl : function() { return '/upload.php'; },
-    		maxFiles : undefined,
-    		maxFilesErrorCallback : function (files, errorCount) {
+    		server: function() { return ['']; },
+    		uploadUrl: function() { return '/upload.php'; },
+    		maxFiles: undefined,
+    		maxFilesErrorCallback: function (files, errorCount) {
         		var maxFiles = this.options('maxFiles');
         		alert('Please upload ' + maxFiles + ' file' + (maxFiles === 1 ? '' : 's') + ' at a time.');
       		},
       		
-    		maxFileSize : undefined,
-    		maxFileSizeErrorCallback : function(file, errorCount) {
+    		maxFileSize: undefined,
+    		maxFileSizeErrorCallback: function(file, errorCount) {
         		alert(file.fileName || file.name + ' is too large, please upload files less than ' + formatSize(this.options('maxFileSize')) + '.');
       		},
       		
@@ -58,11 +58,11 @@
         		alert(file.fileName || file.name + ' has type not allowed, please upload files of type ' + this.options.fileType + '.');
       		},
       		
-      		preprocessChunk : function(chunk) { },
-      		verifyChunk : function(chunk) { return true; },
+      		preprocessChunk: function(chunk) { },
+      		verifyChunk: function(chunk) { return true; },
       		      		
-      		allowChunk : true,
-    		chunkSize : 4*1024*1024
+      		allowChunk: true,
+    		chunkSize: 4*1024*1024
       		
     	};
     	
@@ -163,7 +163,33 @@
 		};
     
 //-------------------------------------------------------------------------------     
-    
+
+		this.servers = [];
+		
+		this.checkServers = function() {
+			
+			var svr = uploader.options.server();
+			
+			for (var i=0; i<svr.length; i++) {
+				if (!contains(uploader.servers, svr[i])) {
+					var serverObj = new ServerObject(uploader, svr[i]);
+					uploader.servers.push(serverObj);
+				}
+			}
+		};
+		
+		this.getAvailableServers = function() {
+			var result = [];
+			for (var i=0; i<uploader.servers.length; i++) {
+				if (uploader.servers[i].isAvailable())
+					result.push(uploader.servers[i]);
+			}
+			return result;
+		};
+
+
+//-------------------------------------------------------------------------------     
+
     	this.files = [];    	
     	
     	this.isUploading = function(){
@@ -200,7 +226,6 @@
       		for (var i=0; i<fileList.length; i++) {
 				var file = fileList[i];
 				var fileName = file.name.split('.');
-				console.debug(fileName)
 				var fileExt = fileName[fileName.length-1].toLowerCase();
 				
 				if (fileType.length > 0 && !contains(uploader.options.fileType, fileExt)) {
@@ -231,17 +256,37 @@
 		
 		var mainLoop = function () {
 		
-			if (uploader.isUploading() < uploader.options.server().length) {
+			uploader.checkServers();		
 			
-				for (var i=0; i<uploader.files.length; i++) {
-					if (uploader.files[i].status() !== 'success')
-						break;
-				}
-				
-				if (i < uploader.files.length) {
-					window.setTimeout(function(){
-						uploader.files[i].uploadNextChunk();
-					},0);
+			var availableServers = uploader.getAvailableServers();
+			var availableServersCount = availableServers.length;
+			
+			if (availableServersCount === 0) return;
+			
+			
+			var uploadChunk = function(chunkObject, serverObject){			
+				chunkObject.preprocess();
+				serverObject.upload(chunkObject);
+			};
+			
+			for (var i=0; i<uploader.files.length; i++) {
+				if (uploader.files[i].status() !== 'success') {
+										
+					var chunk;
+					var fileObject = uploader.files[i];
+					
+					for (var j=0; j<fileObject.chunks.length; j++) {
+						
+						if (availableServersCount === 0) return; 
+						
+						chunk = fileObject.chunks[j];
+						if (chunk.status === 0 || chunk.status > 5) {
+							
+							window.setTimeout(uploadChunk, 0, chunk, availableServers[--availableServersCount]);
+							
+						}
+					}
+					
 				}
 			}
 			
@@ -331,23 +376,6 @@
 		};
 		
 		
-		
-		this.uploadNextChunk = function() {
-			
-			var chunk;
-			for (var i=0; i<fileObject.chunks.length; i++) {
-				chunk = fileObject.chunks[i];
-				if (chunk.status === 0 || chunk.status > 5) break;
-			}
-			if (i<fileObject.chunks.length) {
-				chunk.preprocess();
-				chunk.upload();
-			}
-						
-		};
-		
-		
-		
 		// Callback when something happens within a chunk
 		var chunkEvent = function(event, data){
 		// event can be 'progress', 'success', 'error' or 'retry'
@@ -363,6 +391,7 @@
 				
 				case 'uploadEnd':
 					data.verify();
+					uploader.upload();
 					break;
 					
 				case 'error':
@@ -372,8 +401,6 @@
 					if (fileObject.status() === 'success') { 
 						uploader.fire('fileSuccess', fileObject);
 					} 
-					else
-						fileObject.uploadNextChunk();
 					break;
 				case 'retry':
 					break;
@@ -458,88 +485,7 @@
 		};
 		
 		
-		this.xhr = null;
 		
-		this.upload = function() {
-			if (that.status !== 2) {
-				console.warn('Call to upload in wrong state('+that.status+') - [chunk id='+that.chunkIndex+', file='+that.fileObject.fileName+']');
-				return;
-			}
-			
-			
-			var formData = new FormData();
-	  		formData.append('fileName', that.fileObject.fileName);
-	  		formData.append('relativePath', that.fileObject.relativePath);
-	  		formData.append('totalChunks', that.fileObject.chunks.length);
-	  		formData.append('chunkSize', that.chunkSize);
-	  		formData.append('chunkId', that.chunkIndex);
-	  		formData.append('currentChunkSize', that.size);
-	  		formData.append('chunkData', that.chunkData);
-	  		
-	  		    			
-	  		var url = that.uploader.options.server() + that.uploader.options.uploadUrl();
-	  		
-			that.xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : (window.ActiveXObject) ? new ActiveXObject("Microsoft.XMLHTTP") : null;
-			that.xhr.open("POST", url, true);
-			
-			
-			// When the request starts.
-			that.xhr.upload.addEventListener('loadstart', function(e) {
-				that.status = 3; //uploading
-				that.eventCallback('statusChange', that);
-			});
-			
-			// While sending and loading data.
-			that.xhr.upload.addEventListener('progress', function(e) {
-				if (e.lengthComputable) {
-					that.uploaded = e.loaded;
-			    	that.eventCallback('progress', that);
-			    }
-			});
-			
-			// When the request has *successfully* completed.
-			// Even if the server hasn't responded that it finished.
-			that.xhr.upload.addEventListener('load', function(e) {
-				
-			});
-			
-			// When the request has completed (either in success or failure).
-			// Just like 'load', even if the server hasn't 
-			// responded that it finished processing the request.
-			that.xhr.upload.addEventListener('loadend', function(e) {
-				
-			});
-			
-			// When the request has failed.
-			that.xhr.upload.addEventListener('error', function(e) {
-				
-			});
-			
-			// When the request has been aborted. 
-			// For instance, by invoking the abort() method.
-			that.xhr.upload.addEventListener('abort', function(e) {
-				
-			});
-			
-			// When the author specified timeout has passed 
-			// before the request could complete.
-			that.xhr.upload.addEventListener('timeout', function(e) {
-				
-			});
-			
-			// notice that the event handler is on xhr and not xhr.upload
-			that.xhr.addEventListener('readystatechange', function(e) {
-				if( this.readyState === 4 ) {
-					// the transfer has completed and the server closed the connection.
-					that.uploaded = that.size;
-			    	that.eventCallback('progress', that);
-					that.eventCallback('uploadEnd', that);
-				}
-			});
-			
-			that.xhr.send(formData);
-			
-		};
 		
 		
 		this.verify = function() {
@@ -563,7 +509,123 @@
 		
 	}	
 
+
+
+
+//----------------------------------------------------------------------------
+// ServerObject
 	
+	
+	function ServerObject(uploader, serverOptions) {
+	
+		this.uploader = uploader;
+		this.host = serverOptions.host;
+		this.uploadUrl = serverOptions.uploadUrl;
+		
+		var that = this;	
+				
+		this.uploadSlot = null;
+		
+
+		this.isAvailable = function() { 
+			return that.uploadSlot === null; 
+		};
+		
+		
+		this.upload = function(chunkObject) {
+			
+			if (!that.isAvailable()) {
+				console.warn('Server not available, please check ServerObject.isAvailable() before calling upload!');
+				return;
+			}
+			
+			if (chunkObject.status !== 2) {
+				console.warn('Call to upload in wrong state('+chunkObject.status+') - [chunk id='+chunkObject.chunkIndex+', file='+chunkObject.fileObject.fileName+']');
+				return;
+			}
+			
+			
+			var formData = new FormData();
+	  		formData.append('fileName', chunkObject.fileObject.fileName);
+	  		formData.append('relativePath', chunkObject.fileObject.relativePath);
+	  		formData.append('totalChunks', chunkObject.fileObject.chunks.length);
+	  		formData.append('chunkSize', chunkObject.chunkSize);
+	  		formData.append('chunkId', chunkObject.chunkIndex);
+	  		formData.append('currentChunkSize', chunkObject.size);
+	  		formData.append('chunkData', chunkObject.chunkData);
+	  		
+	  		
+	  		var serverOpt = chunkObject.uploader.options.server()[0];
+	  		var url = serverOpt.host + serverOpt.uploadUrl;
+	  		
+			that.uploadSlot = (window.XMLHttpRequest) ? new XMLHttpRequest() : (window.ActiveXObject) ? new ActiveXObject("Microsoft.XMLHTTP") : null;
+			that.uploadSlot.open("POST", url, true);
+			
+			
+			// When the request starts.
+			that.uploadSlot.upload.addEventListener('loadstart', function(e) {
+				chunkObject.status = 3; //uploading
+				chunkObject.eventCallback('statusChange', chunkObject);
+			});
+			
+			// While sending and loading data.
+			that.uploadSlot.upload.addEventListener('progress', function(e) {
+				if (e.lengthComputable) {
+					chunkObject.uploaded = e.loaded;
+			    	chunkObject.eventCallback('progress', chunkObject);
+			    }
+			});
+			
+			// When the request has *successfully* completed.
+			// Even if the server hasn't responded that it finished.
+			that.uploadSlot.upload.addEventListener('load', function(e) {
+				
+			});
+			
+			// When the request has completed (either in success or failure).
+			// Just like 'load', even if the server hasn't 
+			// responded that it finished processing the request.
+			that.uploadSlot.upload.addEventListener('loadend', function(e) {
+				
+			});
+			
+			// When the request has failed.
+			that.uploadSlot.upload.addEventListener('error', function(e) {
+				chunkObject.status = Number.MAX_VALUE;
+				chunkObject.eventCallback('statusChange', chunkObject);
+				that.uploadSlot = null;
+			});
+			
+			// When the request has been aborted. 
+			// For instance, by invoking the abort() method.
+			that.uploadSlot.upload.addEventListener('abort', function(e) {
+				
+			});
+			
+			// When the author specified timeout has passed 
+			// before the request could complete.
+			that.uploadSlot.upload.addEventListener('timeout', function(e) {
+				
+			});
+			
+			// notice that the event handler is on xhr and not xhr.upload
+			that.uploadSlot.addEventListener('readystatechange', function(e) {
+				if( this.readyState === 4 ) {
+					// the transfer has completed and the server closed the connection.
+					chunkObject.uploaded = chunkObject.size;
+			    	chunkObject.eventCallback('progress', chunkObject);
+					chunkObject.eventCallback('uploadEnd', chunkObject);
+					that.uploadSlot = null;
+				}
+			});
+			
+			that.uploadSlot.send(formData);
+			
+		};
+		
+		
+	
+	}
 	
 	
 })();
