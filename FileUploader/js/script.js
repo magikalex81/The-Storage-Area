@@ -14,7 +14,7 @@ var result = document.getElementById('result'); // text zone where informations 
 	var getServerOptions = function() {
 		
 		var request = new XMLHttpRequest();
-		request.open('GET', '/php/getServer.php', false);  // `false` makes the request synchronous
+		request.open('GET', '/php/getserver.php', false);  // `false` makes the request synchronous
 		request.send(null);
 		
 		if (request.status === 200) {
