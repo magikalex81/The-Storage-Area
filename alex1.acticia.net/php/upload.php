@@ -30,6 +30,10 @@ function _log($str) {
 // loop through files and move the chunks to a temporarily created directory
 if (!empty($_FILES)) foreach ($_FILES as $file) {
 
+    // DEBUG BRUTAL
+    print_r($_FILES);
+
+
     // check the error status
     if ($file['error'] != 0) {
         _log('error '.$file['error'].' in file '.$_POST['fileName']);
