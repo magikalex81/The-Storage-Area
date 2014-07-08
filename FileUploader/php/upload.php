@@ -42,11 +42,8 @@ if (!empty($_FILES)) foreach ($_FILES as $file) {
 
     // init the destination file (format <filename.ext>.part<#chunk>
     // the file is stored in a temporary directory
-    $temp_dir = $GLOBALS['destFolder'];
-    if ($_POST['totalChunks'] != 1) $temp_dir .= '/'.$_POST['fileName'];
-    
-    $dest_file = $temp_dir.'/'.$_POST['fileName'];
-	if ($_POST['totalChunks'] != 1) $dest_file .= '.part'.$_POST['chunkId'];
+    $temp_dir = $GLOBALS['destFolder'].'/'.$_POST['fileName'];
+    $dest_file = $temp_dir.'/'.$_POST['fileName'].'.part'.$_POST['chunkId'];
 	
     // create the temporary directory
     if (!is_dir($temp_dir)) {
