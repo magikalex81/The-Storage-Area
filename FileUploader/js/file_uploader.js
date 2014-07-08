@@ -162,13 +162,13 @@
 		
 		this.checkServers = function() {
 			
+			uploader.servers = [];
+			
 			var svr = uploader.options.server();
 			
 			for (var i=0; i<svr.length; i++) {
-				if (!contains(uploader.servers, svr[i])) {
-					var serverObj = new ServerObject(uploader, svr[i]);
-					uploader.servers.push(serverObj);
-				}
+				var serverObj = new ServerObject(uploader, svr[i]);
+				uploader.servers.push(serverObj);
 			}
 		};
 		
@@ -206,27 +206,28 @@
 			var fileType = uploader.options.fileType;
 			
 			if (typeof(maxFiles) !== 'undefined' && maxFiles < (fileList.length + uploader.files.length)) {
-        	// if single-file upload, file is already added, and trying to add 1 new file, simply replace the already-added file 
-        		if (maxFiles === 1 && uploaderuploader.files.length === 1 && fileList.length === 1) {
-          			uploader.removeFile(uploader.files[0]);
-        		} else {
-          			uploader.options.maxFilesErrorCallback(fileList, errorCount++);
-          			return false;
-        		}
-      		}
+        			// if single-file upload, file is already added, and trying to add 1 new file, simply replace the already-added file 
+        			if (maxFiles === 1 && uploaderuploader.files.length === 1 && fileList.length === 1) {
+          				uploader.removeFile(uploader.files[0]);
+        			} else {
+          				uploader.options.maxFilesErrorCallback(fileList, errorCount++);
+          				return false;
+        			}
+      			}
       		
-      		for (var i=0; i<fileList.length; i++) {
+      			for (var i=0; i<fileList.length; i++) {
+	
 				var file = fileList[i];
 				var fileName = file.name.split('.');
 				var fileExt = fileName[fileName.length-1].toLowerCase();
-				
+					
 				if (fileType.length > 0 && !contains(uploader.options.fileType, fileExt)) {
 					uploader.options.fileTypeErrorCallback(file, errorCount++);
 					return false;
 				}       
-				
+					
 				var fileobj = new FileObject(file, uploader);
-				
+					
 				window.setTimeout(function(fileobj) {
 					uploader.files.push(fileobj);
 					uploader.fire('fileAdded', fileobj, event);
@@ -250,7 +251,7 @@
 			if (availableServersCount === 0) return;
 			
 			
-			var uploadChunk = function(chunkObject, serverObject){			
+			var uploadChunk = function(chunkObject, serverObject){		
 				chunkObject.preprocess();
 				serverObject.upload(chunkObject);
 			};
