@@ -4,15 +4,14 @@ var count = document.getElementById('count'); // text zone to display nb files d
 var result = document.getElementById('result'); // text zone where informations about uploaded files are displayed
 
 
-//https://github.com/23/resumable.js
-// main initialization
+
 (function(){
 	"use strict";
 	
 	
 	
 	
-	var getServer = function() {
+	var getServerOptions = function() {
 		
 		var request = new XMLHttpRequest();
 		request.open('GET', '/php/getServer.php', false);  // `false` makes the request synchronous
@@ -40,13 +39,12 @@ var result = document.getElementById('result'); // text zone where informations 
 	
 	
 	var options = {
-		//server : getServer(),
-		uploadUrl : function() { return ['/php/upload.php']; },
+		server : getServerOptions,
 		maxFiles : 500,				// Define the max files per drag-n-drop
 		//maxFilesErrorCallback : function (files, errorCount) { };
-		maxFileSize : 20*1024*1024, // NON, doit être représentatif de TOTAL SIZE DISPO sur noeud
+		maxFileSize : 20*1024*1024, // PHP file size limit (TODO à faire générer par PHP)
 		//maxFileSizeErrorCallback : function(file, errorCount) { };
-		chunkSize : 4*1024*1024,	// TOUJOURS DECOUPER si filesize > chunk size, dans le cas contraire, bourrer.
+		chunkSize : 4*1024*1024,	// If file size exceed maxFileSize, cut it in files of size chunkSize
 		fileType : [],				// Restrict upload to some extensions
 		//fileTypeErrorCallback: function(file, errorCount) { };
 		preprocess : preprocessChunk,
