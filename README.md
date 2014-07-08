@@ -1,13 +1,13 @@
 <h1>FileUploader v0.1a</h1>
 
-<h2>Premier jet pour l'uploader.</h2>
+<h2>First Draft</h2>
 
-Il integre :
-- la gestion des uploads multiples
-- l'ajout de nouveaux fichiers
-- les fichiers de gros volume
+Done :
+- Multiple-upload
+- Adding files
+- Large size files
 
-Sont commencés:
-- la gestion du hashage / chiffrement (preprocessing)
-- la vérification des données uploadées (verifying)
-- la gestion multi-serveurs
+In progress:
+- Hashing, cyphering (preprocessing)
+- Checked upload (verifying)
+- Multi-server queing
