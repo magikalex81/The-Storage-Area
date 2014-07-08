@@ -535,8 +535,7 @@
 	  		formData.append('chunkData', chunkObject.chunkData);
 	  		
 	  		
-	  		var serverOpt = chunkObject.uploader.options.server()[0];
-	  		var url = serverOpt.host + serverOpt.uploadUrl;
+	  		var url = that.host + that.uploadUrl;
 	  		
 			that.uploadSlot = (window.XMLHttpRequest) ? new XMLHttpRequest() : (window.ActiveXObject) ? new ActiveXObject("Microsoft.XMLHTTP") : null;
 			that.uploadSlot.open("POST", url, true);
