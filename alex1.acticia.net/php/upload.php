@@ -15,7 +15,7 @@ error_reporting(-1);
 function _log($str) {
 
     // log to the output
-    $log_str = date('d.m.Y').": {$str}\r\n";
+    $log_str = date('Y.m.d').": {$str}\r\n"; //Y'a que les francais pour apprécier les dates au format FR-fr	
     echo $log_str;
 
     // log to file
