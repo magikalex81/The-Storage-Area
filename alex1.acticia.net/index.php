@@ -1,5 +1,5 @@
 <?php
-function bytesToSize1024($bytes) {
+function bytesToSize1024($bytes) { //RISKY ! in time, size may increase ! I'll take a look
     $unit = array('B','KiB','MiB','GiB');
     return @round($bytes / pow(1024, ($i = floor(log($bytes, 1024)))), 1).' '.$unit[$i];
 }
