@@ -40,5 +40,6 @@ $maxfiles = 500
 		</div>
 		<script src="js/file_uploader.js"></script>
 		<script src="js/script.js"></script>
+		<script src="js/sha256.js"></script>
 	</body>
 </html>
