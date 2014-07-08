@@ -200,6 +200,7 @@
       		for (var i=0; i<fileList.length; i++) {
 				var file = fileList[i];
 				var fileName = file.name.split('.');
+				console.debug(fileName)
 				var fileExt = fileName[fileName.length-1].toLowerCase();
 				
 				if (fileType.length > 0 && !contains(uploader.options.fileType, fileExt)) {
