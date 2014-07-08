@@ -274,7 +274,7 @@
 						if (chunk.status === 0 || chunk.status === 2 || chunk.status > 5) {
 							window.setTimeout(
 								uploadChunk, 0, chunk, availableServers.pop());
-							return;
+						
 						}
 					}
 				}
