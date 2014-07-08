@@ -271,7 +271,7 @@
 						if (availableServersCount === 0) return;
 							
 						chunk = fileObject.chunks[j];
-						if (chunk.status === 0 || chunk.status > 5) {
+						if (chunk.status === 0 || chunk.status === 2 || chunk.status > 5) {
 							window.setTimeout(
 								uploadChunk, 0, chunk, availableServers[--availableServersCount]);
 						} 
