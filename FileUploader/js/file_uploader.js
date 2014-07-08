@@ -241,14 +241,15 @@
 		};
 		
 		
+		var availableServers = [];
+		
 		var mainLoop = function () {
 		
 			uploader.checkServers();		
 			
-			var availableServers = uploader.getAvailableServers();
-			var availableServersCount = availableServers.length;
+			availableServers = uploader.getAvailableServers();
 			
-			if (availableServersCount === 0) return;
+			if (availableServers.length === 0) return;
 			
 			
 			var uploadChunk = function(chunkObject, serverObject){		
@@ -268,13 +269,14 @@
 
 					for (var j=0; j<fileObject.chunks.length; j++) {
 						
-						if (availableServersCount === 0) return;
+						if (availableServers.length === 0) return;
 							
 						chunk = fileObject.chunks[j];
 						if (chunk.status === 0 || chunk.status === 2 || chunk.status > 5) {
 							window.setTimeout(
-								uploadChunk, 0, chunk, availableServers[--availableServersCount]);
-						} 
+								uploadChunk, 0, chunk, availableServers.pop());
+							return;
+						}
 					}
 				}
 			}
