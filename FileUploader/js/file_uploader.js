@@ -255,26 +255,36 @@
 				serverObject.upload(chunkObject);
 			};
 			
-			for (var i=0; i<uploader.files.length; i++) {
-				if (uploader.files[i].status() !== 'success') {
-										
-					var chunk;
-					var fileObject = uploader.files[i];
+			////////////////////////////////////////////////////////////////////////////////
+			// TODO: A OPTIMISER!!! -> faire une FIFO de chunk?
+			for (var i=0; i<availableServersCount; i++) {
+				
+				for (var j=0; j<uploader.files.length; j++) {
 					
-					for (var j=0; j<fileObject.chunks.length; j++) {
+					if (uploader.files[j].status() !== 'success') {
 						
-						if (availableServersCount === 0) return; 
+						var chunk;
+						var fileObject = uploader.files[j];
+
+						for (var k=0; k<fileObject.chunks.length; k++) {
+							
+							chunk = fileObject.chunks[k];
+							if (chunk.status === 0 || chunk.status > 5) {
+								window.setTimeout(
+									uploadChunk, 0, 
+									chunk, availableServers[i]);
+							}
+							
+						} 
 						
-						chunk = fileObject.chunks[j];
-						if (chunk.status === 0 || chunk.status > 5) {
-							
-							window.setTimeout(uploadChunk, 0, chunk, availableServers[--availableServersCount]);
-							
-						}
 					}
 					
+					
 				}
+				
 			}
+			
+			////////////////////////////////////////////////////////////////////////////////
 			
 		};
 		
