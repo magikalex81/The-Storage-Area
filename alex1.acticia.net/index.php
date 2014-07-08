@@ -23,7 +23,7 @@ $maxfiles = 500
 			</div>
 			<div class="upload_form_cont">
 				<div class="info">
-					<div id="dropArea">Click or Drop your files here</div>
+					<div id="dropArea">Click to choose or Drop your files here</div>
 					<div>
 						<span id="count"></span>
 					</div>
