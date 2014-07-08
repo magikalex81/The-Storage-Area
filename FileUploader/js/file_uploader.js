@@ -241,13 +241,12 @@
 		};
 		
 		
-		var availableServers = [];
 		
 		var mainLoop = function () {
 		
 			uploader.checkServers();		
 			
-			availableServers = uploader.getAvailableServers();
+			var availableServers = uploader.getAvailableServers();
 			
 			if (availableServers.length === 0) return;
 			
