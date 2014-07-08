@@ -263,7 +263,7 @@
 				if (uploader.files[i].status() !== 'success') {
 						
 					var chunk;
-					var fileObject = uploader.files[j];
+					var fileObject = uploader.files[i];
 
 					for (var j=0; j<fileObject.chunks.length; j++) {
 						
