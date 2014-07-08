@@ -4,6 +4,7 @@ function bytesToSize1024($bytes) { //RISKY ! in time, size may increase ! I'll t
     return @round($bytes / pow(1024, ($i = floor(log($bytes, 1024)))), 1).' '.$unit[$i];
 }
 $df = bytesToSize1024(disk_free_space("/")); // will be stuck into a block file.
+$maxfile = 500
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@ $df = bytesToSize1024(disk_free_space("/")); // will be stuck into a block file.
 		</header>
 		<div class="container">
 			<div class="contr">
-				<h2>Upload your files (max 500 files at once)</h2>
+				<h2>Upload your files (max <?=$df?> files at once)</h2> // will read $maxfile from php.ini
 			</div>
 			<div class="upload_form_cont">
 				<div class="info">
