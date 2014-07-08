@@ -252,8 +252,7 @@
 			
 			
 			var uploadChunk = function(chunkObject, serverObject){		
-				chunkObject.preprocess();
-				serverObject.upload(chunkObject);
+				
 			};
 			
 			////////////////////////////////////////////////////////////////////////////////
@@ -272,9 +271,8 @@
 							
 						chunk = fileObject.chunks[j];
 						if (chunk.status === 0 || chunk.status === 2 || chunk.status > 5) {
-							window.setTimeout(
-								uploadChunk, 0, chunk, availableServers.pop());
-						
+							chunk.preprocess();
+							availableServers.pop().upload(chunk);
 						}
 					}
 				}
