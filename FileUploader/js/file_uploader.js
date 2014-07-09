@@ -166,7 +166,7 @@
 			
 			for (var i=0; i<svr.length; i++) {
 				for (var j=0; j<uploader.servers.length; j++) {
-					if (svr[j].host === uploader.servers[i].host) break;
+					if (svr[i].host === uploader.servers[j].host) break;
 				}
 				
 				if (j === uploader.servers.length) {
