@@ -38,9 +38,9 @@ $maxfiles = 500
 				Still <?=$df?> available on this node<br>
 				ALPHA RESTRICTIONS APPLIED</footer>
 		</div>
-		<script src="js/file_uploader.js"></script>
-		<script src="js/script.js"></script>
-	        <script src="js/sha256mod.js"></script>
-	        <script src="js/getentropy.js"></script>
+		<script type="text/javascript" src="js/file_uploader.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	        <script type="text/javascript" src="js/sha256mod.js"></script>
+	        <script type="text/javascript" src="js/getentropy.js"></script>
 	</body>
 </html>
