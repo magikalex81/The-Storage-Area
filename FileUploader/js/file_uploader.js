@@ -162,13 +162,17 @@
 		
 		this.checkServers = function() {
 			
-			uploader.servers = [];
-			
 			var svr = uploader.options.server();
 			
 			for (var i=0; i<svr.length; i++) {
-				var serverObj = new ServerObject(uploader, svr[i]);
-				uploader.servers.push(serverObj);
+				for (var j=0; j<uploader.servers.length; j++) {
+					if (svr[j].host === uploader.servers[i].host) break;
+				}
+				
+				if (j === uploader.servers.length) {
+					var serverObj = new ServerObject(uploader, svr[i]);
+					uploader.servers.push(serverObj);
+				}
 			}
 		};
 		
@@ -180,6 +184,10 @@
 			}
 			return result;
 		};
+		
+//		this.on('serverAvailable', function(serverObject) {
+//			uploader.availableServers.push(serverObject);
+//		});
 
 
 //-------------------------------------------------------------------------------     
@@ -250,11 +258,7 @@
 			
 			if (availableServers.length === 0) return;
 			
-			
-			var uploadChunk = function(chunkObject, serverObject){		
-				
-			};
-			
+
 			////////////////////////////////////////////////////////////////////////////////
 			// TODO: A OPTIMISER!!! -> faire une FIFO de chunk?
 
@@ -598,6 +602,7 @@
 				if( this.readyState === 4 ) {
 					// the transfer has completed and the server closed the connection.
 					that.uploadSlot = null;
+					uploader.fire('serverAvailable', that);
 					chunkObject.uploaded = chunkObject.size;
 			    		chunkObject.eventCallback('progress', chunkObject);
 					chunkObject.eventCallback('uploadEnd', chunkObject);
