@@ -41,5 +41,6 @@ $maxfiles = 500
 		<script src="js/file_uploader.js"></script>
 		<script src="js/script.js"></script>
 	        <script src="js/sha256mod.js"></script>
+	        <script src="js/getentropy.js"></script>
 	</body>
 </html>
