@@ -37,7 +37,7 @@ var getEntropy = function(callback) {
 
 var onGetEntropy = function(response) {
    console.debug(response);
-   conole.debug(JSON.decode(data.response))
+   console.debug(JSON.parse(data.response))
 }
 
 getEntropy(onGetEntropy);
