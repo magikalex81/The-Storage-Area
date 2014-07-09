@@ -29,7 +29,7 @@ var getEntropy = function(callback) {
          callback(xhr.responseText);
       } 
    }
-   xhr.send(entropy256);
+   xhr.send(JSON.stringify(entropy256));
 }
 
 
