@@ -13,9 +13,26 @@ var entropy256=({
 });
 
 
+var getEntropy = function(callback) {
+   
+   var xhr = new XMLHttpRequest();
+   xhr.open("POST", url, true);
+   
+   xhr.setRequestHeader("Content-type", "application/json-rpc");
+
+   xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+         callback(xhr.responseText);
+      } 
+   }
+   xhr.send(entropy256);
+}
 
 
+/// Exemple d'utilisation
 
+var onGetEntropy = function(response) {
+   console.debug(response);
+}
 
-
-console.debug(LA_CHOSE)
+getEntropy(onGetEntropy);
