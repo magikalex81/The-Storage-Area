@@ -1,6 +1,6 @@
 var url='https://api.random.org/json-rpc/1/invoke'
 
-var entropy256=({
+var entropy256=("{
     "jsonrpc": "2.0",
     "method": "generateBlobs",
     "params": {
@@ -10,7 +10,7 @@ var entropy256=({
         "format": "hex"
     },
     "id": 27269
-});
+}");
 
 
 
