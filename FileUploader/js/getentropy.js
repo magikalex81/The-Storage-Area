@@ -9,10 +9,10 @@ var entropy256=({
       'size': 256,
       'format': 'hex',
       },
-   'id': 42
+   'id': 42,
 });
 
-response{
+return{
    return $http({
       url: 'https://api.random.org/json-rpc/1/invoke',
       method: 'POST',
