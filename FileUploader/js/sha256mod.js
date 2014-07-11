@@ -2,10 +2,7 @@
 sha256mod.js
 modified constants
 (c) Matthieu Viguier
-
-/*
-CryptoJS v3.1.2
-code.google.com/p/crypto-js
+based on CryptoJS v3.1.2
 (c) 2009-2013 by Jeff Mott.
 
 */
@@ -22,7 +19,7 @@ code.google.com/p/crypto-js
     var H = [];
     var K = [];
 
-    // Compute constants
+    // Compute modified constants
     (function () {
         function isPrime(n) {
             var sqrtN = Math.sqrt(n);
