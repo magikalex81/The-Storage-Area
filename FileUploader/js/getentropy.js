@@ -36,8 +36,8 @@ var getEntropy = function(callback) {
 /// Exemple d'utilisation
 
 var onGetEntropy = function(response) {
-   console.debug(response);
-   console.debug(JSON.parse(response).result.random.data[0])
+   //console.debug(response);
+   console.debug("hexa random :",JSON.parse(response).result.random.data[0])
 }
 
 getEntropy(onGetEntropy);
