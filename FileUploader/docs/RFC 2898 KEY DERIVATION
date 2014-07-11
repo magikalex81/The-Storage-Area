@@ -1,4 +1,4 @@
-
+Based on RFC2898, TSA uses SHA256mod.HMAC as KDF in PBKDF2
 
 
 
