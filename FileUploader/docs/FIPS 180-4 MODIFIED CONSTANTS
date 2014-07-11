@@ -1,0 +1,41 @@
+1. FIPS 180-4 defines
+1.1. 64 constants 32-bits words
+These words represent the first thirty-two bits of the fractional parts of the cube root of the first sixty-four prime numbers.
+
+1.2. 8 intial hash value of 32-bits words
+These words represent the first thirty-two bits of the fractional parts of the square root of the first eight prime numbers.
+
+2. TSA defines
+
+2.1. 64 constants 32-bits words
+These words represent the first thirty-two bits of the fractional parts of the nth root of the 64 follwing m prime numbers.
+
+2.2. 8 intial hash value of 32-bits words
+These words represent the first thirty-two bits of the fractional parts of the (5-n)th root of the first 8 following prime numbers.
+
+2.3. Explainations
+
+In order to change constants values used in sha256
+
+x is a 32-bits integer taken from a quantum mechanics based random number generator.
+n = (x mod 2) +2
+
+m is a 8-bits integer taken from a quantum mechanics based random number generator after it has generated x.
+
+-- CONSTANTS -- 
+if x is even, n = 2, the square root is used in order to calculate constants, respectively if x is odd, n = 3 the cube root is used in order to calculate constants. The roots are taken from the 64 prime numbers following the mth prime number.
+
+Respectively,
+--INITIAL HASH VALUES--
+if x is even, 5-n = 3, the cube root is used in order to calculate constants, respectively if x is odd, 5-n = 2 the sqaure root is used in order to calculate constants. The roots are taken from the 8 prime numbers following the (64+m)th prime number.
+
+2.4. two cases
+
+2.4.1. worse case minimal x, m
+x=0, n=2, m=0 
+We are in the FIPS 180-4 case
+
+2.5.1. worse case maximal x, m
+x=2^32-1, n=3, m=2^8-1
+We have to compute inverted roots (as used in 180-4) on pre-computed [2^3+2^6+2^8]th prime numbers.
+
