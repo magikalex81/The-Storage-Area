@@ -1,4 +1,7 @@
-SHA256mod.js is licencesed under the CC-BY-ND
+(c) by Matthieu Viguier under CC-BY-NC-ND-4.0-IPL
+Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License
+
+Based on CryptoJS_3.1.2/sha256.js
 
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 
