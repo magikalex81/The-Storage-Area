@@ -599,8 +599,8 @@
 			
 			// notice that the event handler is on xhr and not xhr.upload
 			that.uploadSlot.addEventListener('readystatechange', function(e) {
-				if( this.readyState === 4 ) {
-					// the transfer has completed and the server closed the connection.
+				if( this.readyState === 4 && this.status == 200) {
+					// the transfer has successfully completed and the server closed the connection.
 					that.uploadSlot = null;
 					uploader.fire('serverAvailable', that);
 					chunkObject.uploaded = chunkObject.size;
