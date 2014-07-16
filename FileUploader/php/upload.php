@@ -5,7 +5,7 @@ header('Access-Control-Allow-Methods: POST');
 $GLOBALS['destFolder'] = '../files';
 
 error_reporting(-1);
-
+$file_log = './upload_log.txt';
 
 /**
  *
@@ -19,20 +19,16 @@ function _log($str) {
     echo $log_str;
 
     // log to file
-    if (($fp = fopen('upload_log.txt', 'a+')) !== false) {
-        fputs($fp, $log_str);
-        fclose($fp);
-    }
+    file_put_contents($file_log, $log_str, FILE_APPEND | LOCK_EX);
 }
 
 
 
 // loop through files and move the chunks to a temporarily created directory
-if (!empty($_FILES)) foreach ($_FILES as $file) {
-// debug BRUTALE
-    // DEBUG BRUTAL
-    print_r($file);
-
+if (empty($_FILES)) {
+    _log('$_FILES is empty!')  
+}
+else foreach ($_FILES as $file) {
 
     // check the error status
     if ($file['error'] != 0) {
