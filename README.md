@@ -6,8 +6,13 @@ Done :
 - Multiple-upload
 - Adding files
 - Large size files
+- Multi-server queing
 
 In progress:
 - Hashing, cyphering (preprocessing)
 - Checked upload (verifying)
-- Multi-server queing
+
+ToDo
+- Support adding directories
+- Authentification
+- ...
