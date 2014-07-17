@@ -15,11 +15,11 @@ $file_log = './upload_log.txt';
 function _log($str) {
 
     // log to the output
-    $log_str = date('Y.m.d').": {$str}\r\n"; //Y'a que les francais pour apprécier les dates au format FR-fr	
-    echo $log_str;
+    //$log_str = date('Y.m.d').": {$str}\r\n"; //Y'a que les francais pour apprécier les dates au format FR-fr	
+    //echo $log_str;
 
     // log to file
-    file_put_contents($file_log, $log_str, FILE_APPEND | LOCK_EX);
+    //file_put_contents($file_log, $log_str, FILE_APPEND | LOCK_EX);
 }
 
 
