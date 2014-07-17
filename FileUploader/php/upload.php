@@ -3,9 +3,10 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST'); 
 
 $GLOBALS['destFolder'] = '../files';
+$GLOBALS['file_log'] = './upload_log.txt';
 
 error_reporting(-1);
-$file_log = './upload_log.txt';
+
 
 /**
  *
@@ -19,7 +20,7 @@ function _log($str) {
     echo $log_str;
 
     // log to file
-    file_put_contents($file_log, $log_str, FILE_APPEND | LOCK_EX);
+    file_put_contents($GLOBALS['file_log'], $log_str, FILE_APPEND | LOCK_EX);
 }
 
 
