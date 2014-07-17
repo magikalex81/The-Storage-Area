@@ -26,7 +26,7 @@ function _log($str) {
 
 // loop through files and move the chunks to a temporarily created directory
 if (empty($_FILES)) {
-    _log('$_FILES is empty!')  
+    _log('$_FILES is empty!');
 }
 else foreach ($_FILES as $file) {
 
