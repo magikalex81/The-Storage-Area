@@ -15,19 +15,17 @@ $file_log = './upload_log.txt';
 function _log($str) {
 
     // log to the output
-    //$log_str = date('Y.m.d').": {$str}\r\n"; //Y'a que les francais pour apprécier les dates au format FR-fr	
-    //echo $log_str;
+    $log_str = date('Y.m.d').": {$str}\r\n"; //Y'a que les francais pour apprécier les dates au format FR-fr	
+    echo $log_str;
 
     // log to file
-    //file_put_contents($file_log, $log_str, FILE_APPEND | LOCK_EX);
+    file_put_contents($file_log, $log_str, FILE_APPEND | LOCK_EX);
 }
 
 
 
 // loop through files and move the chunks to a temporarily created directory
-if (empty($_FILES)) {
-    _log('$_FILES is empty!');
-}
+if (empty($_FILES)) _log('$_FILES is empty!');
 else foreach ($_FILES as $file) {
 
     // check the error status
