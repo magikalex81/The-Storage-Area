@@ -1,5 +1,5 @@
 #!/bin/bash
-# wget --no-check-certificate 
+# wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/tsa_node_installer_V0001.sh
 # THIS IS THE TSA INSTALLER V0001
 # CHANGE THE DEFAULT ROOT PASSWORD
 /bin/echo -e"\e[1;32mHello, "$USER".  This step will ask you for a new password for root. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !\e[0;m"
@@ -16,8 +16,9 @@ read upass
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
 # RESTRICT ROOT FROM LOGIN DIRECTLY VIA SSH
 /bin/echo -e "\e[1;32mPlease wait ...\e[0;m"
-/bin/rm /etc/ssh/ssh_host_*
-/usr/sbin/dpkg-reconfigure openssh-server
+##/bin/rm /etc/ssh/ssh_host_*
+## /usr/sbin/dpkg-reconfigure openssh-server
+/usr/sbin/dpkg --configure -a
 /bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 # RENEW SOURCE LIST
