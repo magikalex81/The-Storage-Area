@@ -2,7 +2,7 @@
 # wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/tsa_node_installer_V0001.sh
 # THIS IS THE TSA INSTALLER V0001
 # CHANGE THE DEFAULT ROOT PASSWORD
-/bin/echo -e"\e[1;32mHello, "$USER".  This step will ask you for a new password for root. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !\e[0;m"
+/bin/echo -e "\e[1;32mHello, "$USER".  This step will ask you for a new password for root. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !\e[0;m"
 /bin/echo -ne "\e[1;32mEnter your new password and press [ENTER]:\e[0;m "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
