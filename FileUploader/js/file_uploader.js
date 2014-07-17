@@ -344,9 +344,9 @@
 	  		chunksStatus = chunksStatus / fileObject.chunks.length;
 	  		
 	  		if (chunksStatus === 0) return 'pending';
-	  		else if (chunksStatus < 2) return 'preprocessing';
-			else if (chunksStatus === 2) return 'ready';
-			else if (chunksStatus === 4) return 'verifying';
+	  		//else if (chunksStatus < 2) return 'preprocessing';
+			//else if (chunksStatus === 2) return 'ready';
+			//else if (chunksStatus === 4) return 'verifying';
 			else if (chunksStatus < 5) return 'uploading';
 			else if (chunksStatus === 5) return 'success';
 			else return 'error';				
