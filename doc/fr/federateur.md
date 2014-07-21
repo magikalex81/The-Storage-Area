@@ -4,7 +4,7 @@
  
     1.1. Structure juridique 
     
-    The Storage Area est un projet collaboratif OpenSource. Sa structure de [valorisation][1] est gérée par une [entreprise][2] unipersonnelle à responsabilité limitée de droit français dénommée ACTICIA. Les statuts sont disponibles ici.
+    The Storage Area est un projet collaboratif OpenSource. Sa structure de [valorisation][1] est gérée par une [entreprise][2] unipersonnelle à responsabilité limitée de droit français. Les statuts sont disponibles ici.
 
     La licence attenante au code propre au projet est la  "Attribution-ShareAlike 4.0 International" de Creative Commons, toujours référencée CC BY-SA 4.0. Les codes tiers nécessaires au projet ainsi que leurs licences respectives sont répertoriées dans /licences. Cette licence est approuvée "Free culture". A titre informatif et sans que cette explication ne se subsitue à la licence, The Storage Area vous confère un maximum de droits, y compris pour une utilisation commerciale, à condition de citer les auteurs du code et de partager vos travaux selon les mêmes termes.
     
