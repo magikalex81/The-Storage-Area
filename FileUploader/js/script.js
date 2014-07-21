@@ -104,7 +104,7 @@ var result = document.getElementById('result'); // text zone where informations 
 		var fileItem = file.uiElement;
 		var progress = fileItem.children[1];
 		progress.value = progress.max;
-		
+		fileItem.classList.add("success");
 		uploader.upload();
 	});
 	
