@@ -27,8 +27,7 @@ $maxfiles = 500
 					<div>
 						<span id="count"></span>
 					</div>
-					<h3>Result:</h3>
-					<div id="result"></div>
+					<div id="result" class="list-group"></div>
 				</div>
 			</div>
 			<footer>
