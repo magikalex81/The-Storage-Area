@@ -109,7 +109,13 @@ var result = document.getElementById('result'); // text zone where informations 
 		uploader.upload();
 	});
 	
-	
+	uploader.on('fileError', function(file) {
+		var fileItem = file.uiElement;
+		var progress = fileItem.children[1];
+		progress.value = 0;
+		fileItem.classList.add("failure");
+		uploader.upload();
+	});
 	
 	
 })();
