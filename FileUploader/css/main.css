@@ -61,7 +61,7 @@ footer {
 	background: #eee;
 	border: 1px solid #ddd;
 	font-weight: bold;
-	margin: 20px;
+	margin: 5px 0;
 }
 
 .info > div {
@@ -87,17 +87,13 @@ footer {
 	background: #ccc;
 }
 
-#result .success, #result .failure {
-	font-size: 9px;
-	border-radius: 5px;
-}
 
 #result .success {
-	background-color: #77fc9f;
+	color: #00ce3e;
 }
 
 #result .failure {
-	background-color: #fcc577;
+	color: #ff3232;
 }
 
 .supported {
