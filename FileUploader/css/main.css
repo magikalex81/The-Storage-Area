@@ -112,7 +112,7 @@ footer {
 
 progress {  
    display: block; /* default: inline-block */  
-   width: 300px;  
+   width: 100%;  
    margin: 1em auto;  
    padding: 4px;  
    border: 0 none;  
