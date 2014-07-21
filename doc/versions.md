@@ -7,7 +7,7 @@ X.Y.Z.-rc :     This version is in a public testing phase<br>
 X.Y.Z :         This version is released<br>
 date :          The date the version has been finalized
 
-V 0.1.0-dev , date :
+**V 0.1.0-dev** , date :
 
 * Selecting files per drag&drop or click&choose
 * Cut files in many chunks
