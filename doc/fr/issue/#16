@@ -1,1 +1,24 @@
-L'issue #16 parle des limitations
+L'issue #16 de la version 0.1.1-dev parle des limitations du système de fichiers des serveurs de stockage.
+
+Le système de fichier utilisé sur les serveurs 0.1.1+server.0.1.0-dev est ext4.
+Ses limitations sont :
+
+* Taille maximale de fichier : 16 Tio
+* Nombre maximal de fichiers : 4 milliards
+* Taille maximale du nom de fichiers : 256 octets
+* Caractères autorisés dans les noms de fichiers : Tous les caractères Unicode sauf NUL et '/'
+
+Il en découle que le client The Storage Area va vérifier :
+
+* Que la taille maximum d'un fichier unique ne dépasse par 16 Tio
+* Que le nombre de fichiers présents sur l'hôte ne dépassera par 4 milliars après l'upload du prochain client
+* Que le nom du fichier est compatible **en-US.UTF-8**
+* Que ce nom de fichier ne dépasse pas :
+ * **246 caractères**
+
+En effet, le nom du fichier sur le serveur sera :
+[taille en octets] : descriptif du champ
+
+[WIP] : numéro de chunk en base58check, toujours à 0 pour le répertoire, de 1 à 4 milliards
+[1] : séparateur entre le numéro de chunk et le hash
+[9] : hash issu de sha256mod en base58check
