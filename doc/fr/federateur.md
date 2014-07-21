@@ -66,27 +66,27 @@
 
   [1]: http://www.acticia.biz/openfiles/rv-rmll-2010-valorisation.pdf
   [2]: http://www.acticia.com
-  [3]: law-tsa@acticia.org
-  [4]: ETUDE%20EBIOS
-  [5]: adm-tsa@acticia.org
-  [6]: hum-tsa@acticia.org
-  [7]: sec-tsa@acticia.org
-  [8]: law-tsa@acticia.org
-  [9]: acc-tsa@acticia.org
-  [10]: pmg-tsa@acticia.org
-  [11]: ceo-tsa@acticia.org
-  [12]: buy-tsa@acticia.org
-  [13]: cmg-tsa@acticia.org
-  [14]: pcr-tsa@acticia.org
-  [15]: gra-tsa@acticia.org
-  [16]: cto-tsa@acticia.org
-  [17]: har-tsa@acticia.org
-  [18]: eco-tsa@acticia.org
-  [19]: ico-tsa@acticia.org
-  [20]: anl-tsa@acticia.org
-  [21]: dat-tsa@acticia.org
-  [22]: net-tsa@acticia.org
-  [23]: cic-tsa@acticia.org
-  [24]: dba-tsa@acticia.org
-  [25]: sys-tsa@acticia.org
-  [26]: contact-tsa@acticia.org
+  [3]: mailto:law-tsa@acticia.org
+  [4]: ETUDE EBIOS
+  [5]: mailto:adm-tsa@acticia.org
+  [6]: mailto:hum-tsa@acticia.org
+  [7]: mailto:sec-tsa@acticia.org
+  [8]: mailto:law-tsa@acticia.org
+  [9]: mailto:acc-tsa@acticia.org
+  [10]: mailto:pmg-tsa@acticia.org
+  [11]: mailto:ceo-tsa@acticia.org
+  [12]: mailto:buy-tsa@acticia.org
+  [13]: mailto:cmg-tsa@acticia.org
+  [14]: mailto:pcr-tsa@acticia.org
+  [15]: mailto:gra-tsa@acticia.org
+  [16]: mailto:cto-tsa@acticia.org
+  [17]: mailto:har-tsa@acticia.org
+  [18]: mailto:eco-tsa@acticia.org
+  [19]: mailto:ico-tsa@acticia.org
+  [20]: mailto:anl-tsa@acticia.org
+  [21]: mailto:dat-tsa@acticia.org
+  [22]: mailto:net-tsa@acticia.org
+  [23]: mailto:cic-tsa@acticia.org
+  [24]: mailto:dba-tsa@acticia.org
+  [25]: mailto:sys-tsa@acticia.org
+  [26]: mailto:contact-tsa@acticia.org
