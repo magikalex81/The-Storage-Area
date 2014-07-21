@@ -274,7 +274,7 @@
 						if (availableServers.length === 0) return;
 							
 						chunk = fileObject.chunks[j];
-						if (chunk.status === 0 || chunk.status === 2 || chunk.status > 5) {
+						if (chunk.status === 0 || chunk.status === 2 /*|| chunk.status > 5*/) {
 							chunk.preprocess();
 							availableServers.pop().upload(chunk);
 						}
