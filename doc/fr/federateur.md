@@ -52,7 +52,7 @@
         *   *responsable technique opérationnel* : [cto-tsa@acticia.org][16]
         *   *responsable de l'architecture matérielle* : [har-tsa@acticia.org][17]
     *   OPERATIONELS SECONDE LIGNE :
-        *   *porte parole* : [eco-tsa@acticia.org][18]
+        *   *porte parole* : [eco-tsa@acticia.org][18], [contact-tsa@acticia.org][26]
         *   *coordinateur interne* : [ico-tsa@acticia.org][19]
         *   *analyste* : [anl-tsa@acticia.org][20]
         *   *Architecte données* : [dat-tsa@acticia.org][21]
@@ -89,3 +89,4 @@
   [23]: cic-tsa@acticia.org
   [24]: dba-tsa@acticia.org
   [25]: sys-tsa@acticia.org
+  [26]: contact-tsa@acticia.org
