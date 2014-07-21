@@ -1,18 +1,6 @@
-<h1>FileUploader v0.1a</h1>
+THE STORAGE AREA is CC-BY-SA 4.0 INTERNATIONAL
 
-<h2>First Draft</h2>
+[Contact us][1]
 
-Done :
-- Multiple-upload
-- Adding files
-- Large size files
-- Multi-server queing
 
-In progress:
-- Hashing, cyphering (preprocessing)
-- Checked upload (verifying)
-
-ToDo
-- Support adding directories
-- Authentification
-- ...
+  [1]: mailto:contact-tsa@acticia.org
