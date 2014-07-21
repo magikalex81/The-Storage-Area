@@ -389,6 +389,7 @@
 					break;
 					
 				case 'error':
+					uploader.fire('fileError', fileObject);
 					break;
 					
 				case 'success':
