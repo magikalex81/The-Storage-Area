@@ -59,19 +59,25 @@ var result = document.getElementById('result'); // text zone where informations 
 	
 	
 	uploader.on('fileAdded', function (file) {
-		var fileDiv = document.createElement("div");
-		fileDiv.id = file.fileName;
-		fileDiv.appendChild(document.createTextNode(file.fileName));
-		fileDiv.appendChild(document.createTextNode("Pending"));
+		var fileItem = document.createElement("div");
+		fileItem.id = file.fileName;
+		fileItem.className = "list-group-item";
+		fileItem.appendChild(document.createTextNode(file.fileName));
+		
+		var statusSpan = document.createElement("span");
+		statusSpan.className = "pull-right";
+		statusSpan.appendChild(document.createTextNode("Pending"));
+		fileItem.appendChild(statusSpan);
 		
 		var progressBar = document.createElement("progress");
 		progressBar.max = file.size;
+		fileItem.appendChild(progressBar);
 		
-		fileDiv.appendChild(progressBar);
 		
-		result.appendChild(fileDiv);
 		
-		file.uiElement = fileDiv;
+		result.appendChild(fileItem);
+		
+		file.uiElement = fileItem;
 		
 		count.value = count.value +1;
 		
@@ -83,20 +89,20 @@ var result = document.getElementById('result'); // text zone where informations 
 	});
 	
 	uploader.on('fileProgress', function(file) {
-		var fileDiv = file.uiElement;
-		var progress = fileDiv.children[0];
+		var fileItem = file.uiElement;
+		var progress = fileItem.children[1];
 		progress.value = file.uploaded();
 	});
 	
 	uploader.on('chunkStatusChange', function(chunk) {
 		var file = chunk.fileObject;
-		var fileDiv = file.uiElement;
-		fileDiv.childNodes[1].data = chunk.fileObject.status();	
+		var fileItem = file.uiElement;
+		fileItem.childNodes[1].innerText = chunk.fileObject.status();	
 	});
 	
 	uploader.on('fileSuccess', function(file) {
-		var fileDiv = file.uiElement;
-		var progress = fileDiv.children[0];
+		var fileItem = file.uiElement;
+		var progress = fileItem.children[1];
 		progress.value = progress.max;
 		
 		uploader.upload();
