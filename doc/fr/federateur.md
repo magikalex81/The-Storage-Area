@@ -67,7 +67,7 @@
   [1]: http://www.acticia.biz/openfiles/rv-rmll-2010-valorisation.pdf
   [2]: http://www.acticia.com
   [3]: mailto:law-tsa@acticia.org
-  [4]: ETUDE EBIOS
+  [4]: http://www.ssi.gouv.fr/
   [5]: mailto:adm-tsa@acticia.org
   [6]: mailto:hum-tsa@acticia.org
   [7]: mailto:sec-tsa@acticia.org
