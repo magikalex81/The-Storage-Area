@@ -14,11 +14,16 @@ Il en découle que le client The Storage Area va vérifier :
 * Que le nombre de fichiers présents sur l'hôte ne dépassera par 4 milliars après l'upload du prochain client
 * Que le nom du fichier est compatible **en-US.UTF-8**
 * Que ce nom de fichier ne dépasse pas :
- * **246 caractères**
+
+== == WORK IN PROGRESS == ==
+ * **230 caractères**, que s'il le dépasse, seuls les 230 premiers caractères soient pris en compte
+ 
 
 En effet, le nom du fichier sur le serveur sera :
 [taille en octets] : descriptif du champ
 
-[WIP] : numéro de chunk en base58check, toujours à 0 pour le répertoire, de 1 à 4 milliards
+[230] : premiers charactères du nom d'origine du fichier
+[1] : separateur entre le nom du fichier et le numero de chunk
+[6] : numéro de chunk en base58check, toujours à 0 pour le répertoire, de 1 à 4 milliards
 [1] : séparateur entre le numéro de chunk et le hash
 [9] : hash issu de sha256mod en base58check
