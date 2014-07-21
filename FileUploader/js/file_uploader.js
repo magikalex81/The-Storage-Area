@@ -584,6 +584,7 @@
 				chunkObject.status = Number.MAX_VALUE;
 				that.uploadSlot = null;
 				chunkObject.eventCallback('statusChange', chunkObject);
+				chunkObject.eventCallback('error', chunkObject);
 			});
 			
 			// When the request has been aborted. 
