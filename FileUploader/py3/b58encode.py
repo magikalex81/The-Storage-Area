@@ -1,4 +1,5 @@
 ## (c) 2014 by Matthieu VIGUIER. CC-BY-SA 4.0 INTERNATIONAL
+## Based on http://pastebin.com/TghewQTM visited 2014-07-21 - copyleft
 
 alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 base_count = len(alphabet)
