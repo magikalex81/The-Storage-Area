@@ -12,6 +12,7 @@ date :          The date the version has been finalized
 
 * Brand new *FLAT DESIGN* *en/fr* website
 * EBIOS (c) based analysis
+* Capable of retrying on error
 * Support Cross-Origin protected POST
 * User credentials are binded to a PKDF whith sha256-mod
 * PHP is replaced by python3
