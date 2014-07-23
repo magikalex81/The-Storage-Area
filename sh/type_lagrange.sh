@@ -3,9 +3,24 @@
 clear
 touch /var/log/type_lagrange.stdout
 touch /var/log/type_lagrange.stderr
-mkdir -p /opt/install
 cat /var/log/type_lagrange.stdout
 cat /var/log/type_lagrange.stderr
+# CHANGE THE DEFAULT ROOT PASSWORD
+/usr/bin/dpkg --configure -a
+/bin/echo -e "\e[1;32mHello, "$USER".  This step will ask you for a new password for root. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !\e[0;m"
+/bin/echo -ne "\e[1;32mEnter your new password and press [ENTER]:\e[0;m "
+read rpass
+/bin/echo "root:$rpass" | /usr/sbin/chpasswd
+# ADD A NEW USER
+clear
+/bin/echo -e "\e[1;32mThis step will ask you for a login and a password for a new user.\e[0;m"
+/bin/echo -ne "\e[1;32mEnter your new login and press [ENTER]: \e[0;m"
+read ulogin
+/bin/echo -ne "\e[1;32mEnter your new password for $ulogin and press [ENTER]: \e[0;m"
+read upass
+/usr/sbin/useradd $ulogin
+/bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
+clear
 # DISALLOW LOGIN FROM ROOT VIA SSH
 /bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
