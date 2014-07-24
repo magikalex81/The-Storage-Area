@@ -2,6 +2,8 @@
 # LAGRANGE IS A SECURED IMAP SERVER
 # COPY & PASTE THE FOLLOWING AS ROOT IN A CONSOLE :
 ## wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/type_lagrange.sh ; chmod u+x type_lagrange.sh ; ./type_lagrange.sh
+# #1# WARNINGS - MAKE A LOOP TO CHECK PRE-STATE
+# #2# UNLEASH IN PROD - TIME SHIFTING
 clear
 touch /var/log/type_lagrange.stdout
 touch /var/log/type_lagrange.stderr
@@ -60,9 +62,9 @@ clear
 apt-get install -y chkrootkit 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 /bin/sed -i "s/eval $CHKROOTKIT $RUN_DAILY_OPTS/$CHKROOTKIT $RUN_DAILY_OPTS 2>&1 | mail root -s 'ChkRootkit'/" /etc/cron.daily/chkrootkit
 apt-get install -y rkhunter 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
-rkhunter --cronjob --update --propupd --checkall
-clear
+#2# chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
+#2# rkhunter --cronjob --update --propupd --checkall
+#!2#
 clear
 # CONFIGURE HOSTNAME
 /bin/echo -e "\e[1;32mDeclare new hostname\e[0;m "
@@ -71,11 +73,11 @@ clear
 clear
 # CACHE DNS
 /bin/echo -e "\e[1;32mInstall DNS CACHE\e[0;m "
-### ON DEBIAN VPS
+#1# ON DEBIAN VPS
 service bind9 stop 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 apt-get remove -y bind9 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 apt-get autoremove -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-###
+#!1#
 apt-get install -y unbound 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 echo "nameserver 127.0.0.1" > /etc/resolv.conf
 echo "search acticia.net" >> /etc/resolv.conf
