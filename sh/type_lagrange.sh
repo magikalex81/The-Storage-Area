@@ -16,13 +16,13 @@ cat /var/log/type_lagrange.stderr
 # CHANGE THE DEFAULT ROOT PASSWORD
 /usr/bin/dpkg --configure -a
 clear
-/bin/echo -e "Hello, "$USER".  This step will ask you for a new password for root. Be sure to type on a \e[1;31msecured keyboard\e[0;m with \e[1;31msecured eyes \e[0;m because this password will not be confirmed and will be showed in clear !"
-/bin/echo -ne "Enter your \e[1;32mnew password\e[0;m and press [ENTER]: "
+/bin/echo -e "Hello, "$USER".  This step will ask you for a \e[1;31new password for root\e[0;1m. Be sure to type on a \e[1;31msecured keyboard\e[0;1m with \e[1;31msecured eyes \e[0;1 because this password will not be confirmed and will be showed in clear !"
+/bin/echo -ne "Enter your \e[1;32mnew password\e[0;1 and press [ENTER]: "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
 clear
-/bin/echo -e "This step will ask you for a \e[1;32mlogin and a password\e[0;m for a new user."
+/bin/echo -e "This step will ask you for a\e[1;32m login and a password\e[0;m for a new user."
 /bin/echo -ne "mEnter your new \e[1;32login\e[0;m and press [ENTER]: "
 read ulogin
 /bin/echo -ne "Enter your new \e[1;32mpassword\e[0;m for \e[1;32m$ulogin\e[0;m and press [ENTER]: \e[0;m"
