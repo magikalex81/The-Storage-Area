@@ -4,7 +4,11 @@
 ## wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/type_lagrange.sh ; chmod u+x type_lagrange.sh ; ./type_lagrange.sh
 # #1# WARNINGS - MAKE A LOOP TO CHECK PRE-STATE
 # #2# UNLEASH IN PROD - TIME SHIFTING
-#2#clear
+clear
+function pause(){
+   read -p "$*"
+}
+clear
 touch /var/log/type_lagrange.stdout
 touch /var/log/type_lagrange.stderr
 cat /var/log/type_lagrange.stdout
@@ -91,4 +95,39 @@ mkdir /etc/caremail
 /bin/tar -czf install_log.tar.gz -C / var/log 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 /usr/bin/mail -s "$HOSTNAME LOG" -a /root/install_log.tar.gz root < /dev/null
 clear
+# POST-FIX
+/bin/echo -e "\e[1;32mMigrating MTA\e[0;m "
+/bin/echo - "You will be asked to confirm"
+pause 'Press [Enter] key to continue...'
+apt-get install -y postfix postfix-mysql postfix-pcre 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr ##### ZUI action scrpit neede :)
+clear
+/bin/echo -e "\e[1;32mHello, "$USER".  This step will ask you for a new password for sql-root. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !\e[0;m"
+/bin/echo -ne "\e[1;32mEnter your new password and press [ENTER]:\e[0;m "
+read sqlpass
+apt-get install -y debconf-utils
+cat << EOF | debconf-set-selections
+mysql-server-5.0 mysql-server/root_password password $sqlpass
+mysql-server-5.0 mysql-server/root_password_again password $sqlpass
+mysql-server-5.0 mysql-server/root_password seen true
+mysql-server-5.0 mysql-server/root_password_again seen true
+EOF
+/usr/bin/apt-get -y install mysql-client-5.5 mysql-server-5.5 libsasl2-2 libsasl2-modules sasl2-bin openssl ntp 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+# POST-FIX ADMIN
+#/bin/echo -e "\e[1;32mInstall the MTA ADMIN TOOL\e[0;m "
+#apt-get install -y libapache2-mod-php5 php5-mysql
+#mysql -u root -p
+#cd ~
+
+
+
+
+
+
+
+
+
+
+
+
+
 /bin/echo -e "\e[1;32mReady to serve, you can exit this console\e[0;m "
