@@ -44,6 +44,7 @@ clear
 /bin/sed -i "s/dc_eximconfig_configtype='local'/dc_eximconfig_configtype='internet'/" /etc/exim4/update-exim4.conf.conf
 /bin/sed -i "s/dc_local_interfaces='127.0.0.1 ; ::1'/dc_local_interfaces='127.0.0.1'/" /etc/exim4/update-exim4.conf.conf
 /bin/echo "root: mat.viguier@gmail.com" >> /etc/aliases
+/usr/sbin/update-exim4.conf 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
 # AUTO UPDATE
 /bin/echo -e "\e[1;32mAuto Up-to-date\e[0;m "
