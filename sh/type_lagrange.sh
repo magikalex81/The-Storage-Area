@@ -60,8 +60,13 @@ clear
 apt-get install -y chkrootkit 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 /bin/sed -i "s/eval $CHKROOTKIT $RUN_DAILY_OPTS/$CHKROOTKIT $RUN_DAILY_OPTS 2>&1 | mail root -s 'ChkRootkit'/" /etc/cron.daily/chkrootkit
 apt-get install -y rkhunter 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-## chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
-## rkhunter --cronjob --update --propupd --checkall
+chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
+rkhunter --cronjob --update --propupd --checkall
+clear
+clear
+# CONFIGURE HOSTNAME
+#/bin/echo -e "\e[1;32mDeclare news hostname\e[0;m "
+#/bin/echo "lagrange.acticia.net" > /etc/hostname
 clear
 # SEND LOGS
 /bin/echo -e "\e[1;32mSend logs\e[0;m "
