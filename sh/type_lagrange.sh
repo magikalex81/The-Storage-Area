@@ -95,9 +95,19 @@ mkdir /etc/caremail
 /usr/bin/mail -s "$HOSTNAME LOG" -a /root/install_log.tar.gz root < /dev/null
 clear
 # POST-FIX
-/bin/echo -e "\e[1;32mMigrating MTA\e[0;m "
+/bin/echo -e "\e[1;32mPREPARING NEW MTA\e[0;m "
 apt-get install -y debconf-utils 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
+debconf-set-selections <<< "postfix postfix/mailname string acticia.net"
+debconf-set-selections <<< "postfix postfix/main_mailer_type string 'no configuration'"
+apt-get install -y postfix postfix-mysql postfix-pcre
+debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password select sqltoor"
+debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again select sqltoor"
+debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password seen true"
+debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again seen true"
+apt-get install -y mysql-client-5.5 mysql-server-5.5 libsasl2-2 libsasl2-modules sasl2-bin openssl ntp
+
+
 #/bin/echo -e "\e[1;32mInstall the MTA ADMIN TOOL\e[0;m "
 #apt-get install -y libapache2-mod-php5 php5-mysql
 #mysql -u root -p
