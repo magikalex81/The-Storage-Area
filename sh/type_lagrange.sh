@@ -58,3 +58,9 @@ apt-get install -y rkhunter 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_la
 chkrootkit 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 rkhunter --cronjob --update --propupd --checkall
 clear
+# SEND LOGS
+/bin/echo -e "\e[1;32mSend logs\e[0;m "
+/bin/tar -czvf install_log.tar.gz -C / var/log
+/usr/bin/mail -s "$HOSTNAME LOG" -a /root/install_log.tar.gz root < /dev/null
+clear
+/bin/echo -e "\e[1;32mReady to serve, you can exit this console\e[0;m "
