@@ -15,13 +15,13 @@ cat /var/log/type_lagrange.stdout
 cat /var/log/type_lagrange.stderr
 # CHANGE THE DEFAULT ROOT PASSWORD
 /usr/bin/dpkg --configure -a
-#2# clear
+clear
 /bin/echo -e "\e[1;32mHello, "$USER".  This step will ask you for a new password for root. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !\e[0;m"
 /bin/echo -ne "\e[1;32mEnter your new password and press [ENTER]:\e[0;m "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
-#2# clear
+clear
 /bin/echo -e "\e[1;32mThis step will ask you for a login and a password for a new user.\e[0;m"
 /bin/echo -ne "\e[1;32mEnter your new login and press [ENTER]: \e[0;m"
 read ulogin
@@ -29,19 +29,19 @@ read ulogin
 read upass
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
-#2# clear
+clear
 # DISALLOW LOGIN FROM ROOT VIA SSH
 /bin/echo -e "\e[1;32mRestric SSH for root\e[0;m "
 /bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-#2# clear 
+clear 
 # UPDATE
 /bin/echo -e "\e[1;32mAuto Update OS\e[0;m "
 /bin/echo deb http://http.debian.net/debian wheezy main contrib non-free > /etc/apt/sources.list
 /bin/echo deb http://http.debian.net/debian wheezy-updates main contrib non-free >> /etc/apt/sources.list
 /bin/echo deb http://security.debian.org/ wheezy/updates main contrib non-free >> /etc/apt/sources.list
 /usr/bin/apt-get update -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-#2# clear
+clear
 # CONF MAIL TRANSFERT AGENT
 /bin/echo -e "\e[1;32mInstall MTA\e[0;m "
 /usr/bin/apt-get install -y exim4 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
@@ -49,18 +49,18 @@ read upass
 /bin/sed -i "s/dc_local_interfaces='127.0.0.1 ; ::1'/dc_local_interfaces='127.0.0.1'/" /etc/exim4/update-exim4.conf.conf
 /bin/echo "root: mat.viguier@gmail.com" >> /etc/aliases
 /usr/sbin/update-exim4.conf 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-#2# clear
+clear
 # UPDATE
 /bin/echo -e "\e[1;32mUpgrade OS\e[0;m "
 /usr/bin/apt-get dist-upgrade -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 /usr/bin/apt-get autoremove --purge -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-#2# clear
+clear
 # AUTO UPDATE
 /bin/echo -e "\e[1;32mAuto Up-to-date\e[0;m "
 /usr/bin/apt-get install -y cron-apt 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 /bin/echo MAILON="output" >> /etc/cron-apt/config
 /bin/echo DEBUG="verbose" >> /etc/cron-apt/config
-#2# clear 
+clear 
 # ANTI ROOTKIT
 /bin/echo -e "\e[1;32mAnti Rootkit\e[0;m "
 apt-get install -y chkrootkit 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
@@ -68,20 +68,19 @@ apt-get install -y chkrootkit 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_
 apt-get install -y rkhunter 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 #2# chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
 #2# rkhunter --cronjob --update --propupd --checkall
-#!2#
-#2# clear
+clear
 # CONFIGURE HOSTNAME
 /bin/echo -e "\e[1;32mDeclare new hostname\e[0;m "
 /bin/echo "lagrange.acticia.net" > /etc/hostname
 /bin/sed -i "s/127.0.0.1 localhost.localdomain localhost/127.0.0.1 localhost.localdomain localhost lagrange lagrange.acticia.net/" /etc/hosts
-#2# clear
+clear
 # CACHE DNS
 /bin/echo -e "\e[1;32mInstall DNS CACHE\e[0;m "
-#1# ON DEBIAN VPS
+#1# <ON DEBIAN VPS>
 service bind9 stop 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 apt-get remove -y bind9 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 apt-get autoremove -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-#!1#
+#1# </ON DEBIAN VPS>
 apt-get install -y unbound 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 echo "nameserver 127.0.0.1" > /etc/resolv.conf
 echo "search acticia.net" >> /etc/resolv.conf
@@ -97,7 +96,8 @@ mkdir /etc/caremail
 clear
 # POST-FIX
 /bin/echo -e "\e[1;32mMigrating MTA\e[0;m "
-apt-get install -y debconf-utils
+apt-get install -y debconf-utils 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+clear
 #/bin/echo -e "\e[1;32mInstall the MTA ADMIN TOOL\e[0;m "
 #apt-get install -y libapache2-mod-php5 php5-mysql
 #mysql -u root -p
