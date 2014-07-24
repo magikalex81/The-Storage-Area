@@ -80,6 +80,8 @@ apt-get install -y unbound 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lag
 echo "nameserver 127.0.0.1" > /etc/resolv.conf
 echo "search acticia.net" >> /etc/resolv.conf
 /etc/init.d/unbound restart 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+# CACHE DNS
+/bin/echo -e "\e[1;32mMAIL SERVER PRE-INSTALL\e[0;m "
 apt-get install -y bzip2 gcc libpcre3-dev libpcre++-dev g++ libtool libmysqlclient-dev make libssl-dev libmysqld-dev libdb-dev automake autoconf bzip2 lbzip2 libbz2-1.0 libbz2-dev curl libcurl3 libcurl4-openssl-dev libexpat1 libexpat1-dev 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 mkdir /etc/caremail
 # SEND LOGS
