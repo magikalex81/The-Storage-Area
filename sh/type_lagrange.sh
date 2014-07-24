@@ -65,9 +65,23 @@ rkhunter --cronjob --update --propupd --checkall
 clear
 clear
 # CONFIGURE HOSTNAME
-#/bin/echo -e "\e[1;32mDeclare news hostname\e[0;m "
-#/bin/echo "lagrange.acticia.net" > /etc/hostname
+/bin/echo -e "\e[1;32mDeclare new hostname\e[0;m "
+/bin/echo "lagrange.acticia.net" > /etc/hostname
+/bin/sed -i "s/127.0.0.1 localhost.localdomain localhost/127.0.0.1 localhost.localdomain localhost lagrange lagrange.acticia.net/" /etc/hosts
 clear
+# CACHE DNS
+/bin/echo -e "\e[1;32mInstall DNS CACHE\e[0;m "
+### ON DEBIAN VPS
+service bind9 stop 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+apt-get remove -y bind9 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+apt-get autoremove -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+###
+apt-get install -y unbound 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+echo "nameserver 127.0.0.1" > /etc/resolv.conf
+echo "search acticia.net" >> /etc/resolv.conf
+/etc/init.d/unbound restart 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+apt-get install -y bzip2 gcc libpcre3-dev libpcre++-dev g++ libtool libmysqlclient-dev make libssl-dev libmysqld-dev libdb-dev automake autoconf bzip2 lbzip2 libbz2-1.0 libbz2-dev curl libcurl3 libcurl4-openssl-dev libexpat1 libexpat1-dev 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+mkdir /etc/caremail
 # SEND LOGS
 /bin/echo -e "\e[1;32mSend logs\e[0;m "
 /bin/tar -czf install_log.tar.gz -C / var/log 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
