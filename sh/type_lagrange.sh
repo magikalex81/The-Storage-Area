@@ -1,7 +1,7 @@
 #!/bin/bash
 # LAGRANGE IS A SECURED IMAP SERVER
 # COPY & PASTE THE FOLLOWING AS ROOT IN A CONSOLE :
-## wget --no-check-certificate 
+## wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/type_lagrange.sh ; chmod u+x type_lagrange.sh ; ./type_lagrange.sh
 clear
 touch /var/log/type_lagrange.stdout
 touch /var/log/type_lagrange.stderr
