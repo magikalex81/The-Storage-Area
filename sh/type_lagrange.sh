@@ -16,8 +16,8 @@ cat /var/log/type_lagrange.stderr
 # CHANGE THE DEFAULT ROOT PASSWORD
 /usr/bin/dpkg --configure -a
 clear
-/bin/echo -e "Hello, "$USER".  This step will ask you for a new password for root. Be sure to type on a \e[1;32msecured keyboard\e[0;m with \e[1;32msecured eyes \e[0;m because this password will not be confirmed and will be showed in clear !"
-/bin/echo -ne "\e[1;32mEnter your new password and press [ENTER]:\e[0;m "
+/bin/echo -e "Hello, "$USER".  This step will ask you for a new password for root. Be sure to type on a \e[1;31msecured keyboard\e[0;m with \e[1;31msecured eyes \e[0;m because this password will not be confirmed and will be showed in clear !"
+/bin/echo -ne "Enter your \e[1;32mnew password\e[0;m and press [ENTER]: "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
