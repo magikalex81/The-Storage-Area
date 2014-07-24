@@ -183,6 +183,9 @@ apt-get install -y mysql-client-5.5 mysql-server-5.5 libsasl2-2 libsasl2-modules
 /bin/echo -e "PREPARING NEW MTA ${g}OK${n}"
 
 
+mysqladmin -u root --password=sqltoor create postfix
+mysqladmin -u root --password=sqltoor GRANT ALL PRIVILEGES ON postfix.* TO "postfix"@"localhost" IDENTIFIED BY sqlpost
+
 #/bin/echo -e "\e[1;32mInstall the MTA ADMIN TOOL\e[0;m "
 #apt-get install -y libapache2-mod-php5 php5-mysql
 #mysql -u root -p
