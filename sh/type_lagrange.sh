@@ -16,16 +16,16 @@ cat /var/log/type_lagrange.stderr
 # CHANGE THE DEFAULT ROOT PASSWORD
 /usr/bin/dpkg --configure -a
 clear
-/bin/echo -e "\e[1;32mHello, "$USER".  This step will ask you for a new password for root. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !\e[0;m"
+/bin/echo -e "Hello, "$USER".  This step will ask you for a new password for root. Be sure to type on a \e[1;32msecured keyboard\e[0;m with \e[1;32msecured eyes \e[0;m because this password will not be confirmed and will be showed in clear !"
 /bin/echo -ne "\e[1;32mEnter your new password and press [ENTER]:\e[0;m "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
 clear
-/bin/echo -e "\e[1;32mThis step will ask you for a login and a password for a new user.\e[0;m"
-/bin/echo -ne "\e[1;32mEnter your new login and press [ENTER]: \e[0;m"
+/bin/echo -e "This step will ask you for a \e[1;32mlogin and a password\e[0;m for a new user."
+/bin/echo -ne "mEnter your new \e[1;32login\e[0;m and press [ENTER]: "
 read ulogin
-/bin/echo -ne "\e[1;32mEnter your new password for $ulogin and press [ENTER]: \e[0;m"
+/bin/echo -ne "Enter your new \e[1;32mpassword\e[0;m for \e[1;32m$ulogin\e[0;m and press [ENTER]: \e[0;m"
 read upass
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
@@ -100,12 +100,13 @@ apt-get install -y debconf-utils 1>>/var/log/type_lagrange.stdout 2>>/var/log/ty
 clear
 debconf-set-selections <<< "postfix postfix/mailname string acticia.net"
 debconf-set-selections <<< "postfix postfix/main_mailer_type string 'no configuration'"
-apt-get install -y postfix postfix-mysql postfix-pcre
+apt-get install -y postfix postfix-mysql postfix-pcre 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password select sqltoor"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again select sqltoor"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password seen true"
 debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again seen true"
-apt-get install -y mysql-client-5.5 mysql-server-5.5 libsasl2-2 libsasl2-modules sasl2-bin openssl ntp
+apt-get install -y mysql-client-5.5 mysql-server-5.5 libsasl2-2 libsasl2-modules sasl2-bin openssl ntp 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+
 
 
 #/bin/echo -e "\e[1;32mInstall the MTA ADMIN TOOL\e[0;m "
