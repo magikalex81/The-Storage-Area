@@ -29,14 +29,12 @@ clear
 /bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear 
-# UPDATE THEN UPGRADE
-/bin/echo -e "\e[1;32mAuto Update & Upgrade OS\e[0;m "
+# UPDATE
+/bin/echo -e "\e[1;32mAuto Update OS\e[0;m "
 /bin/echo deb http://http.debian.net/debian wheezy main contrib non-free > /etc/apt/sources.list
 /bin/echo deb http://http.debian.net/debian wheezy-updates main contrib non-free >> /etc/apt/sources.list
 /bin/echo deb http://security.debian.org/ wheezy/updates main contrib non-free >> /etc/apt/sources.list
 /usr/bin/apt-get update -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-/usr/bin/apt-get dist-upgrade -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-/usr/bin/apt-get autoremove --purge -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
 # CONF MAIL TRANSFERT AGENT
 /bin/echo -e "\e[1;32mInstall MTA\e[0;m "
@@ -45,6 +43,11 @@ clear
 /bin/sed -i "s/dc_local_interfaces='127.0.0.1 ; ::1'/dc_local_interfaces='127.0.0.1'/" /etc/exim4/update-exim4.conf.conf
 /bin/echo "root: mat.viguier@gmail.com" >> /etc/aliases
 /usr/sbin/update-exim4.conf 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+clear
+# UPDATE
+/bin/echo -e "\e[1;32mUpgrade OS\e[0;m "
+/usr/bin/apt-get dist-upgrade -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+/usr/bin/apt-get autoremove --purge -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
 # AUTO UPDATE
 /bin/echo -e "\e[1;32mAuto Up-to-date\e[0;m "
@@ -56,9 +59,8 @@ clear
 /bin/echo -e "\e[1;32mAnti Rootkit\e[0;m "
 apt-get install -y chkrootkit 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 /bin/sed -i "s/eval $CHKROOTKIT $RUN_DAILY_OPTS/$CHKROOTKIT $RUN_DAILY_OPTS 2>&1 | mail root -s 'ChkRootkit'/" /etc/cron.daily/chkrootkit
-chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
 apt-get install -y rkhunter 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-## chkrootkit 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+## chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
 ## rkhunter --cronjob --update --propupd --checkall
 clear
 # SEND LOGS
