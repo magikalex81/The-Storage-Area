@@ -7,6 +7,7 @@ cat /var/log/type_lagrange.stdout
 cat /var/log/type_lagrange.stderr
 # CHANGE THE DEFAULT ROOT PASSWORD
 /usr/bin/dpkg --configure -a
+clear
 /bin/echo -e "\e[1;32mHello, "$USER".  This step will ask you for a new password for root. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !\e[0;m"
 /bin/echo -ne "\e[1;32mEnter your new password and press [ENTER]:\e[0;m "
 read rpass
