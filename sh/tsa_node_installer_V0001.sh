@@ -46,7 +46,8 @@ read email
 (/usr/sbin/chkrootkit 2>&1 | mail -s "chkrootkit output" root)
 rkhunter --update
 rkhunter --propupd
-/bin/sed -i 's/MAIL-ON-WARNING=""/MAIL-ON-WARNING="root"/' /etc/etc/rkhunter.conf
+/bin/sed -i 's/MAIL-ON-WARNING=""/MAIL-ON-WARNING="root"/' /etc/rkhunter.conf
+/bin/echo SCRIPTWHITELIST="/usr/bin/unhide.rb" >> /etc/rkhunter.conf
 (/usr/bin/rkhunter -c --enable all --disable none --rwo --cronjob --update 2>&1 | mail -s "rkhunter warnings" root)
 # SEND LOGS
 /bin/tar -czvf install_log.tar.gz -C / var/log
