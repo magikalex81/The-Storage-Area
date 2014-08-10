@@ -47,7 +47,7 @@ read email
 rkhunter --update
 rkhunter --propupd
 /bin/sed -i 's/MAIL-ON-WARNING=""/MAIL-ON-WARNING="root"/' /etc/rkhunter.conf
-/bin/echo SCRIPTWHITELIST="/usr/bin/unhide.rb" >> /etc/rkhunter.conf
+/bin/echo SCRIPTWHITELIST=/usr/bin/unhide.rb >> /etc/rkhunter.conf
 (/usr/bin/rkhunter -c --enable all --disable none --rwo --cronjob --update 2>&1 | mail -s "rkhunter warnings" root)
 # SEND LOGS
 /bin/tar -czvf install_log.tar.gz -C / var/log
