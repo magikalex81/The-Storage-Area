@@ -14,6 +14,8 @@ read ulogin
 read upass
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
+## PREPARING ENVIRONMENT
+/bin/echo -e "\e[1;32mPlease wait ...\e[0;m"
 # RENEW SOURCE LIST
 /bin/echo deb http://http.debian.net/debian wheezy main contrib non-free > /etc/apt/sources.list
 /bin/echo deb http://http.debian.net/debian wheezy-updates main contrib non-free >> /etc/apt/sources.list
@@ -22,30 +24,15 @@ read upass
 /usr/bin/apt-get dist-upgrade -y
 /usr/bin/apt-get autoremove --purge -y
 # RESTRICT ROOT FROM LOGIN DIRECTLY VIA SSH
-/bin/echo -e "\e[1;32mPlease wait ...\e[0;m"
 /bin/rm /etc/ssh/ssh_host_*
 /usr/sbin/dpkg-reconfigure openssh-server
 /bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
-## ZUI ## /usr/bin/apt-get install -y git exim4 cron-apt chkrootkit rkhunter tripwire clamav
-# CONF MAIL
-/bin/sed -i "s/dc_eximconfig_configtype='local'/dc_eximconfig_configtype='internet'/" /etc/exim4/update-exim4.conf.conf
-/bin/sed -i "s/dc_local_interfaces='127.0.0.1 ; ::1'/dc_local_interfaces='<; ::0 ; 127.0.0.1/" /etc/exim4/update-exim4.conf.conf ##ZUI IPV4 LOCKED
-/bin/echo  -e"\e[1;32mThis step will ask you for email substitute for root.\e[0;m"
-/bin/echo -ne "\e[1;32mEnter your new email and press [ENTER]: \e[0;m"
-read email
-/bin/echo "root: $email" >> /etc/aliases
-/usr/sbin/update-exim4.conf
+#/bin/echo -ne "\e[1;32mEnter your new $fqdn and press [ENTER]: \e[0;m"
+#read fqdn
 # AUTO UPDATE
-/bin/echo MAILON="output" >> /etc/cron-apt/config
-/bin/echo DEBUG="verbose" >> /etc/cron-apt/config
 # ANTI-ROOTKIT
-(/usr/sbin/chkrootkit 2>&1 | mail -s "chkrootkit output" root)
-rkhunter --update
-rkhunter --propupd
-/bin/sed -i 's/MAIL-ON-WARNING=""/MAIL-ON-WARNING="root"/' /etc/rkhunter.conf
-/bin/echo SCRIPTWHITELIST="/usr/bin/unhide.rb" >> /etc/rkhunter.conf
-(/usr/bin/rkhunter -c --enable all --disable none --rwo --update 2>&1 | mail -s "rkhunter warnings" root)
+# ANTI VIRUS
 # SEND LOGS
-/bin/tar -czvf install_log.tar.gz -C / var/log
-/usr/bin/mail -s "$HOSTNAME LOG" -a /root/install_log.tar.gz root < /dev/null
+#/bin/tar -czvf install_log.tar.gz -C / var/log
+#/usr/bin/mail -s "$HOSTNAME LOG" -a /root/install_log.tar.gz root < /dev/null
