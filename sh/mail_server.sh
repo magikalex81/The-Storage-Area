@@ -3,7 +3,7 @@
 #
 # CHANGE THE DEFAULT ROOT PASSWORD
 /bin/echo -e "Hello, "$USER".  This step will ask you for a new password for \e[1;32mroot\e[0;m. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !"
-/bin/echo -ne "mEnter your new \e[1;32mpassword\e[0;m and press [ENTER]:\e[0;m "
+/bin/echo -ne "Enter your new \e[1;32mpassword\e[0;m and press [ENTER]:\e[0;m "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
