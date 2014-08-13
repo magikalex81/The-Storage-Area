@@ -42,7 +42,7 @@ read fqdn
 /bin/echo search acticia.net >> /etc/resolv.conf
 /etc/init.d/unbound restart 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 # PREPARE SYSTEM
-DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y bzip2 gcc libpcre3-dev libpcre++-dev g++ libtool libmysqlclient-dev make libssl-dev libmysqld-dev libdb-dev automake autoconf bzip2 lbzip2 libbz2-1.0 libbz2-dev curl libcurl3 libcurl4-openssl-dev libexpat1 libexpat1-dev libapache2-mod-php5 php5-mysql postfix-mysql postfix-pcre mysql-client-5.5 mysql-server-5.5 libsasl2-2 libsasl2-modules sasl2-bin openssl ntp
+DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y bzip2 gcc libpcre3-dev libpcre++-dev g++ libtool libmysqlclient-dev make libssl-dev libmysqld-dev libdb-dev automake autoconf bzip2 libzip2 libbz2-1.0 libbz2-dev curl libcurl3 libcurl4-openssl-dev libexpat1 libexpat1-dev libapache2-mod-php5 php5-mysql postfix-mysql postfix-pcre mysql-client-5.5 mysql-server-5.5 libsasl2-2 libsasl2-modules sasl2-bin openssl ntp
 /bin/mkdir /etc/caremail
 /bin/echo -ne "mEnter your new \e[1;32mroot password for SQL\e[0;m and press [ENTER]:"
 read sqlroot
