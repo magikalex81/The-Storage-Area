@@ -48,6 +48,13 @@ DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y bzip2 gcc libpcre3-de
 /bin/echo -ne "Enter your new \e[1;32mroot password for SQL\e[0;m and press [ENTER]:"
 read sqlroot
 mysqladmin -u root password $sqlroot
+mysqladmin -u root --password=$sqlroot create postfix
+## ZUI SQL PASSWORD IS HARDCODED FOR NOW
+/usr/bin/mysql -u root -psqltoor -e "GRANT ALL PRIVILEGES ON postfix.* TO 'postfix'@'localhost' IDENTIFIED BY 'sqlpost';"
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/postfix.sql
+## ZUI DOMAIN IS HARDCODED
+sed -i 's/starbridge.org/acticia.net/g' postfix.sql
+mysql -u root -psqltoor < postfix.sql
 ############################################################
 # AUTO UPDATE
 # ANTI-ROOTKIT
