@@ -36,6 +36,10 @@ touch /opt/acticia/install.err.log
 read fqdn
 /bin/echo $fqdn > /etc/hostname
 127.0.0.1 localhost.localdomain localhost
+/bin/sed -i "s/127.0.0.1 localhost.localdomain localhost/127.0.0.1 localhost.localdomain localhost $fqdn/" /etc/hosts
+/usr/bin/apt-get remove -y bind9
+/usr/bin/apt-get install -y unbound
+############################################################
 # AUTO UPDATE
 # ANTI-ROOTKIT
 # ANTI VIRUS
