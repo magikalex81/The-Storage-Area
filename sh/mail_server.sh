@@ -38,6 +38,14 @@ read fqdn
 /bin/sed -i "s/127.0.0.1 localhost.localdomain localhost/127.0.0.1 localhost.localdomain localhost $fqdn/" /etc/hosts
 /usr/bin/apt-get remove -y bind9 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 /usr/bin/apt-get install -y unbound 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
+/bin/echo nameserver 127.0.0.1 > /etc/resolv.conf
+/bin/echo search acticia.net >> /etc/resolv.conf
+/etc/init.d/unbound restart 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
+# PREPARE SYSTEM
+apt-get install -y bzip2 gcc libpcre3-dev libpcre++-dev g++ libtool libmysqlclient-dev make libssl-dev libmysqld-dev libdb-dev automake autoconf bzip2 lbzip2 libbz2-1.0 libbz2-dev curl libcurl3 libcurl4-openssl-dev libexpat1 libexpat1-dev 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
+/bin/mkdir /etc/caremail
+DEBIAN_FRONTEND=noninteractive apt-get install -y postfix-mysql postfix-pcre
+
 ############################################################
 # AUTO UPDATE
 # ANTI-ROOTKIT
