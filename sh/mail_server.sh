@@ -23,22 +23,21 @@ touch /opt/acticia/install.err.log
 /bin/echo deb http://http.debian.net/debian wheezy main contrib non-free > /etc/apt/sources.list
 /bin/echo deb http://http.debian.net/debian wheezy-updates main contrib non-free >> /etc/apt/sources.list
 /bin/echo deb http://security.debian.org/ wheezy/updates main contrib non-free >> /etc/apt/sources.list
-/usr/bin/apt-get update -y
-/usr/bin/apt-get dist-upgrade -y
-/usr/bin/apt-get autoremove --purge -y
+/usr/bin/apt-get update -y 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
+/usr/bin/apt-get dist-upgrade -y 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
+/usr/bin/apt-get autoremove --purge -y 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 # RESTRICT ROOT FROM LOGIN DIRECTLY VIA SSH
-/bin/rm /etc/ssh/ssh_host_*
-/usr/sbin/dpkg-reconfigure openssh-server
+/bin/rm /etc/ssh/ssh_host_* 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
+/usr/sbin/dpkg-reconfigure openssh-server 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 /bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-/etc/init.d/ssh restart
+/etc/init.d/ssh restart 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 # PREPARE NETWORK
 /bin/echo -ne "Enter your new \e[1;32mfqdn\e[0;m and press [ENTER]:"
 read fqdn
 /bin/echo $fqdn > /etc/hostname
-127.0.0.1 localhost.localdomain localhost
 /bin/sed -i "s/127.0.0.1 localhost.localdomain localhost/127.0.0.1 localhost.localdomain localhost $fqdn/" /etc/hosts
-/usr/bin/apt-get remove -y bind9
-/usr/bin/apt-get install -y unbound
+/usr/bin/apt-get remove -y bind9 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
+/usr/bin/apt-get install -y unbound 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 ############################################################
 # AUTO UPDATE
 # ANTI-ROOTKIT
