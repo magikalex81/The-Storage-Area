@@ -1,7 +1,7 @@
 DO NOT RUN IT IS A MEMO
 
 
-#!/bin/bash
+#!/bin/sh
 # wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/tsa_node_installer_V0001.sh
 # THIS IS THE TSA INSTALLER V0001
 # CHANGE THE DEFAULT ROOT PASSWORD
