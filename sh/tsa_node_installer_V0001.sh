@@ -33,7 +33,7 @@ read upass
 ## ZUI ## /usr/bin/apt-get install -y git exim4 cron-apt chkrootkit rkhunter tripwire clamav
 # CONF MAIL
 /bin/sed -i "s/dc_eximconfig_configtype='local'/dc_eximconfig_configtype='internet'/" /etc/exim4/update-exim4.conf.conf
-/bin/sed -i "s/dc_local_interfaces='127.0.0.1 ; ::1'/dc_local_interfaces='<; ::0 ; 127.0.0.1''/" /etc/exim4/update-exim4.conf.conf ##ZUI IPV4 LOCKED
+/bin/sed -i "s/dc_local_interfaces='127.0.0.1 ; ::1'/dc_local_interfaces='<; ::0 ; 127.0.0.1/" /etc/exim4/update-exim4.conf.conf ##ZUI IPV4 LOCKED
 /bin/echo  -e"\e[1;32mThis step will ask you for email substitute for root.\e[0;m"
 /bin/echo -ne "\e[1;32mEnter your new email and press [ENTER]: \e[0;m"
 read email
