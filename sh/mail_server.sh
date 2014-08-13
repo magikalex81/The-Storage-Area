@@ -37,6 +37,7 @@ read fqdn
 /bin/echo $fqdn > /etc/hostname
 /bin/sed -i "s/127.0.0.1 localhost.localdomain localhost/127.0.0.1 localhost.localdomain localhost $fqdn/" /etc/hosts
 /usr/bin/apt-get remove -y bind9 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
+/usr/bin/apt-get autoremove --purge -y 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 /usr/bin/apt-get install -y unbound 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 /bin/echo nameserver 127.0.0.1 > /etc/resolv.conf
 /bin/echo search acticia.net >> /etc/resolv.conf
