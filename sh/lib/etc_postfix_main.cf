@@ -1,0 +1,34 @@
+smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
+biff = no
+append_dot_mydomain = no
+myhostname = lalande.acticia.net
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+myorigin = $mydomain
+mydestination = $myhostname, localhost.$mydomain, localhost
+mynetworks = 127.0.0.0/8
+recipient_delimiter = +
+home_mailbox = Maildir/ 
+notify_classes = 2bounce, bounce, delay, policy, protocol, resource, software
+smtpd_helo_required = yes
+strict_rfc821_envelopes = yes
+relay_domains = proxy:mysql:/etc/postfix/mysql_relay_domains_maps.cf
+relay_recipient_maps = proxy:mysql:/etc/postfix/mysql_relay_recipients_maps.cf
+virtual_alias_maps = proxy:mysql:/etc/postfix/mysql_virtual_alias_maps.cf,proxy:mysql:/etc/postfix/mysql_virtual_alias_domain_maps.cf,proxy:mysql:/etc/postfix/mysql_virtual_alias_domain_catchall_maps.cf
+virtual_gid_maps = static:20001
+virtual_mailbox_base = /home/virtual
+virtual_mailbox_domains = proxy:mysql:/etc/postfix/mysql_virtual_domains_maps.cf
+virtual_mailbox_maps = proxy:mysql:/etc/postfix/mysql_virtual_mailbox_maps.cf,proxy:mysql:/etc/postfix/mysql_virtual_alias_domain_mailbox_maps.cf
+virtual_minimum_uid = 20001
+virtual_uid_maps = static:20001
+transport_maps = proxy:mysql:/etc/postfix/mysql_transport.cf,proxy:mysql:/etc/postfix/mysql_transport2.cf
+proxy_read_maps = $local_recipient_maps $mydestination $virtual_alias_maps $virtual_alias_domains $virtual_mailbox_maps $virtual_mailbox_domains $relay_recipient_maps $relay_domains $canonical_maps $sender_canonical_maps $recipient_canonical_maps $relocated_maps $transport_maps $mynetworks $smtpd_recipient_restrictions $smtpd_sender_login_maps $has_our_domain_as_sender
+message_size_limit = 50240000
+
+smtpd_recipient_restrictions =
+        permit_mynetworks,
+        reject_unauth_destination,
+        permit
+smtpd_data_restrictions =
+        reject_unauth_pipelining,
+        permit
