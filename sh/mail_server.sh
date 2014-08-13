@@ -55,6 +55,12 @@ wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-St
 ## ZUI DOMAIN IS HARDCODED
 sed -i 's/starbridge.org/acticia.net/g' postfix.sql
 mysql -u root -psqltoor < postfix.sql
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/etc_postfix_main.cf
+mv etc_postfix_main.cf /etc/postfix/main.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/etc_postfix_master.cf
+mv etc_postfix_master.cf /etc/postfix/master.cf
+groupadd -g 20001 vmail
+
 ############################################################
 # AUTO UPDATE
 # ANTI-ROOTKIT
