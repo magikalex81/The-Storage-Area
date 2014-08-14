@@ -1,5 +1,5 @@
 #!/bin/sh
-# wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/mail_server.sh ; chmod u+x mail_server.sh ; ./mail_server.sh
+# wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/mail_server.sh ; chmod u+x mail_server.sh ; ./mail_server.sh
 #
 # CHANGE THE DEFAULT ROOT PASSWORD
 clear
@@ -55,29 +55,29 @@ mysqladmin -u root password $sqlroot
 mysqladmin -u root --password=$sqlroot create postfix
 ## ZUI SQL PASSWORD IS HARDCODED FOR NOW
 /usr/bin/mysql -u root -psqltoor -e "GRANT ALL PRIVILEGES ON postfix.* TO 'postfix'@'localhost' IDENTIFIED BY 'sqlpost';"
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/postfix.sql
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/postfix.sql
 ## ZUI DOMAIN IS HARDCODED
 sed -i 's/starbridge.org/acticia.net/g' postfix.sql
 mysql -u root -psqltoor < postfix.sql
 rm postfix.sql
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/etc_postfix_main.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/etc_postfix_main.cf
 mv etc_postfix_main.cf /etc/postfix/main.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/etc_postfix_master.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/etc_postfix_master.cf
 mv etc_postfix_master.cf /etc/postfix/master.cf
 groupadd -g 20001 vmail
 useradd -g vmail -u 20001 vmail -d /home/virtual -m
 chown -R vmail: /home/virtual
 chmod 770 /home/virtual
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_domains_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_mailbox_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_relay_domains_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_relay_recipients_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_catchall_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_mailbox_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport2.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_maps.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_domains_maps.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_mailbox_maps.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_relay_domains_maps.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_relay_recipients_maps.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_maps.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_catchall_maps.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_mailbox_maps.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport.cf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport2.cf
 sed -i 's/\*\*\*\*/sqlpost/g' mysql_virtual_alias_maps.cf mysql_virtual_domains_maps.cf mysql_virtual_mailbox_maps.cf mysql_relay_domains_maps.cf mysql_relay_recipients_maps.cf mysql_virtual_alias_domain_maps.cf mysql_virtual_alias_domain_catchall_maps.cf mysql_virtual_alias_domain_mailbox_maps.cf mysql_transport.cf mysql_transport2.cf
 mv *.cf /etc/postfix/
 chmod 640 /etc/postfix/mysql_*
@@ -98,9 +98,9 @@ chmod 400 /etc/postfix/tls/tsa.acticia-key.pem
 curl https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/add_main.cf >> /etc/postfix/main.cf
 postfix reload
 /usr/bin/apt-get install -y dovecot-imapd 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot.conf 
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot-sql.conf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot-dict-quota-sql.conf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot.conf 
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot-sql.conf
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot-dict-quota-sql.conf
 ### ZUI HARDCODED
 sed -i 's/\*\*\*\*\*/sqlpost/g' dovecot-sql.conf dovecot-dict-quota-sql.conf
 mv *.conf /etc/dovecot
@@ -110,7 +110,7 @@ chmod 640 /etc/dovecot/dovecot-dict-quota-sql.conf
 /bin/echo "dovecot_destination_recipient_limit = 1" >> /etc/postfix/main.cf
 /bin/echo "virtual_transport = dovecot" >> /etc/postfix/main.cf
 /bin/echo "dovecot unix    -       n       n       -       -      pipe flags=DRhu user=vmail: argv=/usr/lib/dovecot/deliver -f ${sender} -d ${user}@${nexthop} -a ${recipient}" >> /etc/postfix/master.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot
+wget --quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot
 mv dovecot /etc/init.d/
 chmod 755 /etc/init.d/dovecot
 insserv -v /etc/init.d/dovecot
