@@ -1,0 +1,5 @@
+user = postfix
+password = ****
+hosts = localhost
+dbname = postfix
+query = SELECT transport FROM transport WHERE destination='%s' AND active = '1'
