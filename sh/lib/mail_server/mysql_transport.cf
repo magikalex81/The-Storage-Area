@@ -1,0 +1,5 @@
+user = postfix
+password = ****
+hosts = localhost
+dbname = postfix
+query = SELECT concat(transport,':',transport_relay,transport_port) FROM domain WHERE domain='%s' AND active = '1'
