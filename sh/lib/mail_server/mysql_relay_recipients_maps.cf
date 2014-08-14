@@ -1,0 +1,5 @@
+user = postfix
+password = ****
+hosts = localhost
+dbname = postfix
+query = SELECT address FROM relay WHERE address='%s' and active = '1'
