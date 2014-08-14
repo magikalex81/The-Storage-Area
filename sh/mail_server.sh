@@ -60,9 +60,9 @@ wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-St
 sed -i 's/starbridge.org/acticia.net/g' postfix.sql
 mysql -u root -psqltoor < postfix.sql
 rm postfix.sql
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/etc_postfix_main.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/etc_postfix_main.cf
 mv etc_postfix_main.cf /etc/postfix/main.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/etc_postfix_master.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/etc_postfix_master.cf
 mv etc_postfix_master.cf /etc/postfix/master.cf
 groupadd -g 20001 vmail
 useradd -g vmail -u 20001 vmail -d /home/virtual -m
