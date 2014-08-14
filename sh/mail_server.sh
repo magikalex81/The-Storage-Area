@@ -7,7 +7,7 @@ clear
 /bin/echo -ne "Enter your new \e[1;32mpassword\e[0;m and press [ENTER]:\e[0;m "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
-/bin/echo \n
+/bin/echo -e "\n"
 # ADD A NEW USER
 /bin/echo -e "This step will ask you for a \e[1;32mlogin and a password\e[0;m for a new user."
 /bin/echo -ne "Enter your new \e[1;32mlogin\e[0;m and press [ENTER]: "
@@ -16,10 +16,10 @@ read ulogin
 read upass
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
-/bin/echo \n
+/bin/echo -e "\n"
 ## PREPARING ENVIRONMENT
 /bin/echo -e "\e[1;32mPlease wait ...\e[0;m"
-/bin/echo "\n"
+/bin/echo -e "\n"
 /bin/mkdir /opt/acticia
 touch /opt/acticia/install.log
 touch /opt/acticia/install.err.log
