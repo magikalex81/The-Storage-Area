@@ -7,7 +7,7 @@ clear
 /bin/echo -ne "Enter your new \e[1;32mpassword\e[0;m and press [ENTER]:\e[0;m "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
-/bin/echo -e "\n"
+clear
 # ADD A NEW USER
 /bin/echo -e "This step will ask you for a \e[1;32mlogin and a password\e[0;m for a new user."
 /bin/echo -ne "Enter your new \e[1;32mlogin\e[0;m and press [ENTER]: "
@@ -16,10 +16,9 @@ read ulogin
 read upass
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
-/bin/echo -e "\n"
+clear
 ## PREPARING ENVIRONMENT
 /bin/echo -e "\e[1;32mPlease wait ...\e[0;m"
-/bin/echo -e "\n"
 /bin/mkdir /opt/acticia
 touch /opt/acticia/install.log
 touch /opt/acticia/install.err.log
@@ -39,6 +38,8 @@ touch /opt/acticia/install.err.log
 /bin/echo -ne "Enter your new \e[1;32mfqdn\e[0;m and press [ENTER]:"
 read fqdn
 /bin/echo $fqdn > /etc/hostname
+clear
+/bin/echo -e "\e[1;32mPlease wait ...\e[0;m"
 /bin/sed -i "s/127.0.0.1 localhost.localdomain localhost/127.0.0.1 localhost.localdomain localhost $fqdn/" /etc/hosts
 /usr/bin/apt-get remove -y bind9 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 /usr/bin/apt-get autoremove --purge -y 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
@@ -52,6 +53,8 @@ DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y bzip2 gcc libpcre3-de
 /bin/echo -ne "Enter your new \e[1;32mroot password for SQL\e[0;m and press [ENTER]:"
 read sqlroot
 mysqladmin -u root password $sqlroot
+clear
+/bin/echo -e "\e[1;32mPlease wait ...\e[0;m"
 mysqladmin -u root --password=$sqlroot create postfix
 ## ZUI SQL PASSWORD IS HARDCODED FOR NOW
 /usr/bin/mysql -u root -psqltoor -e "GRANT ALL PRIVILEGES ON postfix.* TO 'postfix'@'localhost' IDENTIFIED BY 'sqlpost';"
