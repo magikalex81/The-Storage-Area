@@ -97,7 +97,7 @@ chmod 644 /etc/postfix/tls/tsa.acticia-cert.pem /etc/postfix/tls/cacert.pem
 chmod 400 /etc/postfix/tls/tsa.acticia-key.pem
 curl https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/add_main.cf >> /etc/postfix/main.cf
 postfix reload
-apt-get install -y dovecot-imapd
+/usr/bin/apt-get install -y dovecot-imapd 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot.conf 
 wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot-sql.conf
 wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/dovecot-dict-quota-sql.conf
