@@ -7,7 +7,7 @@ clear
 /bin/echo -ne "Enter your new \e[1;32mpassword\e[0;m and press [ENTER]:\e[0;m "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
-clear
+/bin/echo -e "\n"
 # ADD A NEW USER
 /bin/echo -e "This step will ask you for a \e[1;32mlogin and a password\e[0;m for a new user."
 /bin/echo -ne "Enter your new \e[1;32mlogin\e[0;m and press [ENTER]: "
@@ -16,9 +16,10 @@ read ulogin
 read upass
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
-clear
+/bin/echo -e "\n"
 ## PREPARING ENVIRONMENT
 /bin/echo -e "\e[1;32mPlease wait ...\e[0;m"
+/bin/echo -e "\n"
 /bin/mkdir /opt/acticia
 touch /opt/acticia/install.log
 touch /opt/acticia/install.err.log
@@ -35,6 +36,7 @@ touch /opt/acticia/install.err.log
 /bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 # PREPARE NETWORK
+clear
 /bin/echo -ne "Enter your new \e[1;32mfqdn\e[0;m and press [ENTER]:"
 read fqdn
 /bin/echo $fqdn > /etc/hostname
@@ -50,6 +52,7 @@ clear
 # PREPARE SYSTEM
 DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y bzip2 gcc libpcre3-dev libpcre++-dev g++ libtool libmysqlclient-dev make libssl-dev libmysqld-dev libdb-dev automake autoconf bzip2 libzip2 libbz2-1.0 libbz2-dev curl libcurl3 libcurl4-openssl-dev libexpat1 libexpat1-dev libapache2-mod-php5 php5-mysql postfix-mysql postfix-pcre mysql-client-5.5 mysql-server-5.5 libsasl2-2 libsasl2-modules sasl2-bin openssl ntp 1>/opt/acticia/install.log 2>/opt/acticia/install.err.log
 /bin/mkdir /etc/caremail
+clear
 /bin/echo -ne "Enter your new \e[1;32mroot password for SQL\e[0;m and press [ENTER]:"
 read sqlroot
 mysqladmin -u root password $sqlroot
