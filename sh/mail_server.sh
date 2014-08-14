@@ -1,5 +1,5 @@
 #!/bin/sh
-# wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/mail_server.sh ; chmod u+x mail_server.sh ; ./mail_server.sh
+# wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/mail_server.sh ; chmod u+x mail_server.sh ; ./mail_server.sh
 #
 # CHANGE THE DEFAULT ROOT PASSWORD
 clear
@@ -68,16 +68,16 @@ groupadd -g 20001 vmail
 useradd -g vmail -u 20001 vmail -d /home/virtual -m
 chown -R vmail: /home/virtual
 chmod 770 /home/virtual
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_maps.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_domains_maps.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_mailbox_maps.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_relay_domains_maps.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_relay_recipients_maps.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_maps.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_catchall_maps.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_mailbox_maps.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport.cf
-wget -quiet --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport2.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_maps.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_domains_maps.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_mailbox_maps.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_relay_domains_maps.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_relay_recipients_maps.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_maps.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_catchall_maps.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_mailbox_maps.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport2.cf
 sed -i 's/\*\*\*\*/sqlpost/g' mysql_virtual_alias_maps.cf mysql_virtual_domains_maps.cf mysql_virtual_mailbox_maps.cf mysql_relay_domains_maps.cf mysql_relay_recipients_maps.cf mysql_virtual_alias_domain_maps.cf mysql_virtual_alias_domain_catchall_maps.cf mysql_virtual_alias_domain_mailbox_maps.cf mysql_transport.cf mysql_transport2.cf
 mv *.cf /etc/postfix/
 chmod 640 /etc/postfix/mysql_*
