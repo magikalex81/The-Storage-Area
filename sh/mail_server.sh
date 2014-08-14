@@ -5,7 +5,7 @@
 ### /bin/echo -e "Hello, "$USER".  This step will ask you for a new password for \e[1;32mroot\e[0;m. Be sure to type on a secured keyboard with secured eyes because this password will not be confirmed and will be showed in clear !"
 ### /bin/echo -ne "Enter your new \e[1;32mpassword\e[0;m and press [ENTER]:\e[0;m "
 ### read rpass
-rpass = toor
+rpass = 'toor'
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
 ### /bin/echo -e "This step will ask you for a \e[1;32mlogin and a password\e[0;m for a new user."
@@ -13,8 +13,8 @@ rpass = toor
 ### read ulogin
 ### /bin/echo -ne "Enter your new \e[1;32mpassword\e[0;m for $ulogin and press [ENTER]: "
 ### read upass
-ulogin = user
-upass = resu
+ulogin = 'user'
+upass = 'resu'
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
 ## PREPARING ENVIRONMENT
@@ -50,7 +50,7 @@ DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y bzip2 gcc libpcre3-de
 /bin/mkdir /etc/caremail
 ### /bin/echo -ne "Enter your new \e[1;32mroot password for SQL\e[0;m and press [ENTER]:"
 ### read sqlroot
-sqlroot = sqltoor
+sqlroot = 'sqltoor'
 mysqladmin -u root password $sqlroot
 mysqladmin -u root --password=$sqlroot create postfix
 ## ZUI SQL PASSWORD IS HARDCODED FOR NOW
