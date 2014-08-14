@@ -95,8 +95,27 @@ mkdir /etc/postfix/tls
 cp demoCA/cacert.pem CERT/tsa.acticia-key.pem CERT/tsa.acticia-cert.pem /etc/postfix/tls/
 chmod 644 /etc/postfix/tls/tsa.acticia-cert.pem /etc/postfix/tls/cacert.pem 
 chmod 400 /etc/postfix/tls/tsa.acticia-key.pem
-
-
+curl https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/add_main.cf >> /etc/postfix/main.cf
+postfix reload
+apt-get install -y dovecot-imapd
+wget http://www.starbridge.org/spip/doc/Procmail/dovecot/dovecot.conf 
+wget http://www.starbridge.org/spip/doc/Procmail/dovecot/dovecot-sql.conf
+wget http://www.starbridge.org/spip/doc/Procmail/dovecot/dovecot-dict-quota-sql.conf
+### ZUI HARDCODED
+sed -i 's/\*\*\*\*\*/sqltoor/g' dovecot-sql.conf dovecot-dict-quota-sql.conf
+mv *.conf /etc/dovecot
+chown vmail:dovecot /etc/dovecot/dovecot-dict-quota-sql.conf
+chmod 600 /etc/dovecot/dovecot-sql.conf
+chmod 640 /etc/dovecot/dovecot-dict-quota-sql.conf
+/bin/echo "dovecot_destination_recipient_limit = 1" >> /etc/postfix/main.cf
+/bin/echo "virtual_transport = dovecot" >> /etc/postfix/main.cf
+/bin/echo "dovecot unix    -       n       n       -       -      pipe flags=DRhu user=vmail: argv=/usr/lib/dovecot/deliver -f ${sender} -d ${user}@${nexthop} -a ${recipient}" >> /etc/postfix/master.cf
+wget http://www.starbridge.org/spip/doc/Procmail/init.d/dovecot
+mv dovecot /etc/init.d/
+chmod 755 /etc/init.d/dovecot
+insserv -v /etc/init.d/dovecot
+/etc/init.d/dovecot start
+postfix reload
 ############################################################
 # AUTO UPDATE
 # ANTI-ROOTKIT
