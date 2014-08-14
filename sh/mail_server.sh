@@ -76,7 +76,7 @@ wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-St
 wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_maps.cf
 wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_catchall_maps.cf
 wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_virtual_alias_domain_mailbox_maps.cf
-wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/postfix/mysql_transport.cf
+wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport.cf
 wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/lib/mail_server/mysql_transport2.cf
 sed -i 's/\*\*\*\*/sqlpost/g' mysql_virtual_alias_maps.cf mysql_virtual_domains_maps.cf mysql_virtual_mailbox_maps.cf mysql_relay_domains_maps.cf mysql_relay_recipients_maps.cf mysql_virtual_alias_domain_maps.cf mysql_virtual_alias_domain_catchall_maps.cf mysql_virtual_alias_domain_mailbox_maps.cf mysql_transport.cf mysql_transport2.cf
 mv *.cf /etc/postfix/
