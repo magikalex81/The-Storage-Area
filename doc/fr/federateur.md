@@ -65,12 +65,12 @@
 
 
 
-Afin de ne pas interférer avec d'eventuels autres service présents sur les LAN hébergeurs, la liste des ports utilisés par TSA est contenue dans la liste des ports privés **49152 - 65535** définie par la [RFC 6335] de l'IETF. En cas de NAT, les transitions sont directes par adresse. Par exemple, *cuvier.acticia.net* hébergé sur le LAN de *bresse.acticia.net*  expose sont ssh sur le port 49152 et bresse effectue simplement une translation de l'adresse *bresse.acticia.net:49152* vers *cuvier.acticia.net:49152*.
+Afin de ne pas interférer avec d'eventuels autres service présents sur les LAN hébergeurs, la liste des ports utilisés par TSA est contenue dans la liste des ports privés **49152 - 65535** définie par la [RFC 6335] de l'IETF. En cas de NAT/PF. Par exemple, *cuvier.acticia.net* hébergé sur le LAN de *bresse.acticia.net*  expose sont ssh sur le port 22 standardisé et bresse effectue simplement une translation de l'adresse *bresse.acticia.net:49152* vers *cuvier.acticia.net:22*. Les IP locales sont attribuées par l'hébergeur et définies par contrat.
 
  - 49152 : ***ssh*** *remote terminal on SSH on host server*
  - 49153 : ***ssh*** *remote console on host server (act as KVM over IP)*
- - 49154 : ***reserved***
- - 
+ - 49154 : ***reserved***, *ssh on integrated dev-OS*
+ - 49155 : ***reserved***, *RDP on integrated dev-OS*
   
   [RFC 6335]:http://tools.ietf.org/html/rfc6335
   [1]: http://www.acticia.biz/openfiles/rv-rmll-2010-valorisation.pdf
