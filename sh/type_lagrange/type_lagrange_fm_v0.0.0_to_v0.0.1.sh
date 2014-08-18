@@ -50,17 +50,6 @@ clear
 clear
 /bin/echo -e "Restric SSH for root ${g}OK${n}"
 /bin/echo -e "Auto Update OS ${g}OK${n}"
-# CONF MAIL TRANSFERT AGENT
-/bin/echo -e "Install MTA ${r}please wait${n}"
-/usr/bin/apt-get install -y exim4 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-/bin/sed -i "s/dc_eximconfig_configtype='local'/dc_eximconfig_configtype='internet'/" /etc/exim4/update-exim4.conf.conf
-/bin/sed -i "s/dc_local_interfaces='127.0.0.1 ; ::1'/dc_local_interfaces='127.0.0.1'/" /etc/exim4/update-exim4.conf.conf
-/bin/echo "root: mat.viguier@gmail.com" >> /etc/aliases
-/usr/sbin/update-exim4.conf 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-clear
-/bin/echo -e "Restric SSH for root ${g}OK${n}"
-/bin/echo -e "Auto Update OS ${g}OK${n}"
-/bin/echo -e "Install MTA ${g}OK${n}"
 # UPDATE
 /bin/echo -e "Upgrade OS ${r}please wait${n}"
 /usr/bin/apt-get dist-upgrade -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
@@ -68,7 +57,6 @@ clear
 clear
 /bin/echo -e "Restric SSH for root ${g}OK${n}"
 /bin/echo -e "Auto Update OS ${g}OK${n}"
-/bin/echo -e "Install MTA ${g}OK${n}"
 /bin/echo -e "Upgrade OS ${g}OK${n}"
 # AUTO UPDATE
 /bin/echo -e "Auto Up-to-date ${r}please wait${n}"
@@ -78,7 +66,6 @@ clear
 clear
 /bin/echo -e "Restric SSH for root ${g}OK${n}"
 /bin/echo -e "Auto Update OS ${g}OK${n}"
-/bin/echo -e "Install MTA ${g}OK${n}"
 /bin/echo -e "Upgrade OS ${g}OK${n}"
 /bin/echo -e "Auto Up-to-date ${g}OK${n}"
 # ANTI ROOTKIT
@@ -86,12 +73,11 @@ clear
 apt-get install -y chkrootkit 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 /bin/sed -i "s/eval $CHKROOTKIT $RUN_DAILY_OPTS/$CHKROOTKIT $RUN_DAILY_OPTS 2>&1 | mail root -s 'ChkRootkit'/" /etc/cron.daily/chkrootkit
 apt-get install -y rkhunter 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
-#2# chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
-#2# rkhunter --cronjob --update --propupd --checkall
+chkrootkit 1>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stdout 2>> /var/log/chkrootkit/$(date +%Y_%m_%d_%H_%M).stderr
+rkhunter --cronjob --update --propupd --checkall
 clear
 /bin/echo -e "Restric SSH for root ${g}OK${n}"
 /bin/echo -e "Auto Update OS ${g}OK${n}"
-/bin/echo -e "Install MTA ${g}OK${n}"
 /bin/echo -e "Upgrade OS ${g}OK${n}"
 /bin/echo -e "Auto Up-to-date ${g}OK${n}"
 /bin/echo -e "Anti Rootkit ${g}OK${n}"
@@ -102,22 +88,8 @@ clear
 clear
 /bin/echo -e "Restric SSH for root ${g}OK${n}"
 /bin/echo -e "Auto Update OS ${g}OK${n}"
-/bin/echo -e "Install MTA ${g}OK${n}"
 /bin/echo -e "Upgrade OS ${g}OK${n}"
 /bin/echo -e "Auto Up-to-date ${g}OK${n}"
 /bin/echo -e "Anti Rootkit ${g}OK${n}"
 /bin/echo -e "Declare new hostname ${g}OK${n}"
-
-
-
-
-
-
-
-
-
-
-
-
-
 /bin/echo -e "\e[1;32mReady to serve, you can exit this console\e[0;m "
