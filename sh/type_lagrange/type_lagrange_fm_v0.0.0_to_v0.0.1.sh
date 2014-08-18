@@ -27,7 +27,7 @@ read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
 clear
-/bin/echo -e "This step will ask you for a${r}login${n} and a ${r}password${n} for a ${r}new user${n}."
+/bin/echo -e "This step will ask you for a ${r}login${n} and a ${r}password${n} for a ${r}new user${n}."
 /bin/echo -ne "Enter your new login and press ${g}[ENTER]${n}: "
 read ulogin
 /bin/echo -ne "Enter your new password for ${g}$ulogin${n} and press ${g}[ENTER]${n}:"
