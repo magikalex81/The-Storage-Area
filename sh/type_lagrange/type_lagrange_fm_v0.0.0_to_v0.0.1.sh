@@ -14,8 +14,6 @@ n='\e[0m'
 y='\e[1;33m'
 touch /var/log/type_lagrange.stdout
 touch /var/log/type_lagrange.stderr
-cat /var/log/type_lagrange.stdout
-cat /var/log/type_lagrange.stderr
 
 # CHANGE THE DEFAULT ROOT PASSWORD
 clear
