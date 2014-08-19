@@ -1,5 +1,11 @@
 **The Storage Area est une solution de stockage et de conservation des données numériques qui a pour objectif la création de l'équivalent d'un coffre fort *confidentiel, inviolable, indestructible, inaltérable, et complètement anonyme*. C'est l'équivalent numérique de la cachette au trésor.**
 
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+      NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+      "OPTIONAL" in this document are to be interpreted as described in
+      RFC 2119.
+
+
  1. Structure fonctionelle
  
     1.1. Structure juridique 
