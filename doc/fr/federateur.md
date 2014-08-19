@@ -74,6 +74,12 @@ L'IPV4 publique est inscrite en tant qu'enregistrement de type A dans le DNS du 
  - 49153 : ***ssh*** *remote console on host server (act as KVM over IP)*
  - 49154 : ***reserved***, *ssh on integrated dev-OS*
  - 49155 : ***reserved***, *RDP on integrated dev-OS*
+ - 
+ 
+CONTRAT HEBERGEUR
+DEFINITION DU PROTOCOLE
+STOCKAGE DES FICHIERS ET RECONCATENATION
+
   
   [RFC 6335]:http://tools.ietf.org/html/rfc6335
   [1]: http://www.acticia.biz/openfiles/rv-rmll-2010-valorisation.pdf
