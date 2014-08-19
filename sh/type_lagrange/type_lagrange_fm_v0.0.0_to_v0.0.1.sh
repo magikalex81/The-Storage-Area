@@ -21,16 +21,16 @@ cat /var/log/type_lagrange.stderr
 clear
 /bin/echo -e "Hello, $USER.  This step will ask you for a ${r}new password ${n}for ${r}root${n}."
 /bin/echo -e "Be sure to type on a ${r}secured keyboard${n} with ${r}secured eyes${n}."
-pause "IF YOU LOST YOUR PASSWORD THEN YOU LOST YOUR HOST, Press ${g}[ENTER]${n}"
-/bin/echo -ne "Enter your ${g}new password${n} and press ${g}[ENTER]${n}: "
+pause "IF YOU LOST YOUR PASSWORD THEN YOU LOST YOUR HOST, Press [ENTER]"
+/bin/echo -ne "Enter your ${g}new password${n} and press [ENTER]: "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
 clear
 /bin/echo -e "This step will ask you for a ${r}login${n} and a ${r}password${n} for a ${r}new user${n}."
-/bin/echo -ne "Enter your new login and press ${g}[ENTER]${n}: "
+/bin/echo -ne "Enter your new login and press [ENTER]: "
 read ulogin
-/bin/echo -ne "Enter your new password for ${g}$ulogin${n} and press ${g}[ENTER]${n}:"
+/bin/echo -ne "Enter your new password for ${g}$ulogin${n} and press [ENTER]:"
 read upass
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
@@ -41,6 +41,6 @@ clear
 /etc/init.d/ssh restart 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
 /bin/echo -e "Restric SSH for root ${g}OK${n}"
-pause "THIS SERVER WILL ${r}NOW HALT${n}, Press ${g}[ENTER]${n}"
+pause "THIS SERVER WILL NOW HALT, Press [ENTER]"
 # ALLOW SNPASHOT <- VIRTUAL GUEST ONLY
 /sbin/shutdown -h now 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
