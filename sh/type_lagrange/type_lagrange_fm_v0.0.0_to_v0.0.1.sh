@@ -19,9 +19,9 @@ cat /var/log/type_lagrange.stderr
 
 # CHANGE THE DEFAULT ROOT PASSWORD
 clear
-/bin/echo -e "Hello, $USER.  This step will ask you for a ${r}new password for root${n}."
+/bin/echo -e "Hello, $USER.  This step will ask you for a ${r}new password ${n}for ${r}root${n}."
 /bin/echo -e "Be sure to type on a ${r}secured keyboard${n} with ${r}secured eyes${n}."
-pause "IF YOU LOST YOUR PASSWORD THEN YOU LOST YOUR HOST, Press [ENTER]"
+pause "IF YOU LOST YOUR PASSWORD THEN YOU LOST YOUR HOST, Press ${g}[ENTER]${n}"
 /bin/echo -ne "Enter your ${g}new password${n} and press [ENTER]: "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
