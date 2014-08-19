@@ -52,7 +52,7 @@
         *   *responsable technique opérationnel* : [cto-tsa@acticia.org][16]
         *   *responsable de l'architecture matérielle* : [har-tsa@acticia.org][17]
     *   OPERATIONELS SECONDE LIGNE :
-        *   *porte parole* : [eco-tsa@acticia.org][18], [contact-tsa@acticia.org][26]
+        *   *porte parole* : [eco-tsa@acticia.org][18]
         *   *coordinateur interne* : [ico-tsa@acticia.org][19]
         *   *analyste* : [anl-tsa@acticia.org][20]
         *   *Architecte données* : [dat-tsa@acticia.org][21]
@@ -101,4 +101,3 @@ L'IPV4 publique est inscrite en tant qu'enregistrement de type A dans le DNS du 
   [23]: mailto:cic-tsa@acticia.org
   [24]: mailto:dba-tsa@acticia.org
   [25]: mailto:sys-tsa@acticia.org
-  [26]: mailto:contact-tsa@acticia.org
