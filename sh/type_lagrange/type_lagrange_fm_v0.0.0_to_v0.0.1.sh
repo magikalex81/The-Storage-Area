@@ -35,12 +35,24 @@ read upass
 /usr/sbin/useradd $ulogin
 /bin/echo -e "$ulogin:$upass" | /usr/sbin/chpasswd
 clear
+# MODIFY APT LIST
+clear
+/bin/echo -e "Configure APT ${r}please wait${n}"
+/bin/echo -e "Install and restric SSH for root"
+/bin/echo deb http://http.debian.net/debian wheezy main contrib non-free > /etc/apt/sources.list
+/bin/echo deb http://http.debian.net/debian wheezy-updates main contrib non-free >> /etc/apt/sources.list
+/bin/echo deb http://security.debian.org/ wheezy/updates main contrib non-free >> /etc/apt/sources.list
+/usr/bin/apt-get update -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 # DISALLOW LOGIN FROM ROOT VIA SSH
-/bin/echo -e "Restric SSH for root ${r}please wait${n}"
+clear
+/bin/echo -e "Configure APT ${g}OK${n}"
+/bin/echo -e "Install and restric SSH for root ${r}please wait${n}"
+/usr/bin/apt-get install -y ssh 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 /bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
-/bin/echo -e "Restric SSH for root ${g}OK${n}"
+/bin/echo -e "Configure APT ${g}OK${n}"
+/bin/echo -e "Install and restric SSH for root ${g}OK${n}"
 pause "THIS SERVER WILL NOW HALT, Press [ENTER]"
 # ALLOW SNPASHOT <- VIRTUAL GUEST ONLY
 /sbin/shutdown -h now 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
