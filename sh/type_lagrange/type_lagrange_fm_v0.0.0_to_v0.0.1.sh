@@ -41,6 +41,6 @@ clear
 /etc/init.d/ssh restart 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
 /bin/echo -e "Restric SSH for root ${g}OK${n}"
-pause "THIS SERVER WILL NOW HALT, Press [ENTER]"
+pause "THIS SERVER WILL ${r}NOW HALT${n}, Press ${g}[ENTER]${n}"
 # ALLOW SNPASHOT <- VIRTUAL GUEST ONLY
 /sbin/shutdown -h now 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
