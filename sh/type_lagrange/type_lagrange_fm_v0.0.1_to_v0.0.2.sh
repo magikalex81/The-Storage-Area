@@ -11,11 +11,13 @@ r='\e[1;31m'
 g='\e[1;32m'
 n='\e[0m'
 y='\e[1;33m'
+# INSTALL POSTFIX
 clear
-/bin/echo -e "Install POSTFIX ${r}please wait${n}"
-DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+/bin/echo -e "Install POSTFIX / DOVECOT ${r}please wait${n}"
+DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y postfix 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
+DEBIAN_FRONTEND=noninteractive /usr/bin/apt-get install -y dovecot-imapd 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
-/bin/echo -e "Install POSTFIX ${g}OK${n}"
+/bin/echo -e "Install POSTFIX / DOVECOT ${g}OK${n}"
 pause "THIS SERVER WILL NOW HALT, Press [ENTER] or [CTRL+C] IOT LET IT RUN"
 # ALLOW SNPASHOT <- VIRTUAL GUEST ONLY
 /sbin/shutdown -h now 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
