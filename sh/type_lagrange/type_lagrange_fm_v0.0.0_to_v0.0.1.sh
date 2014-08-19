@@ -22,7 +22,7 @@ clear
 /bin/echo -e "Hello, $USER.  This step will ask you for a ${r}new password ${n}for ${r}root${n}."
 /bin/echo -e "Be sure to type on a ${r}secured keyboard${n} with ${r}secured eyes${n}."
 pause "IF YOU LOST YOUR PASSWORD THEN YOU LOST YOUR HOST, Press ${g}[ENTER]${n}"
-/bin/echo -ne "Enter your ${g}new password${n} and press [ENTER]: "
+/bin/echo -ne "Enter your ${g}new password${n} and press ${g}[ENTER]${n}: "
 read rpass
 /bin/echo "root:$rpass" | /usr/sbin/chpasswd
 # ADD A NEW USER
