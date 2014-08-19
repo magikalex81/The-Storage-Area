@@ -1,9 +1,9 @@
 #!/bin/bash
 # LAGRANGE IS A SECURED IMAP SERVER
+# THIS SCRIPT PREPARE LAGRANGE TO BE ACCESSIBLE VIA SSH
+# THE ONLY WAY TO SYS-ADMIN THIS SERVER
 # COPY & PASTE THE FOLLOWING AS ROOT IN A CONSOLE :
 ## wget --no-check-certificate https://raw.githubusercontent.com/magikalex81/The-Storage-Area/master/sh/type_lagrange/type_lagrange_fm_v0.0.0_to_v0.0.1.sh ; chmod u+x type_lagrange_fm_v0.0.0_to_v0.0.1.sh; ./type_lagrange_fm_v0.0.0_to_v0.0.1.sh
-# #1# WARNINGS - MAKE A LOOP TO CHECK PRE-STATE
-# #2# UNLEASH IN PROD - TIME SHIFTING
 clear
 function pause(){
    read -p "$*"
@@ -41,3 +41,6 @@ clear
 /etc/init.d/ssh restart 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
 clear
 /bin/echo -e "Restric SSH for root ${g}OK${n}"
+pause "THIS SERVER WILL NOW HALT, Press [ENTER]"
+# ALLOW SNPASHOT <- VIRTUAL GUEST ONLY
+/sbin/shutdown -h now 1>>/var/log/type_lagrange.stdout 2>>/var/log/type_lagrange.stderr
